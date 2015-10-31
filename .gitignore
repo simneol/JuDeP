@@ -1,0 +1,16 @@
+# ignore these files
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.ilk
+*.pdb
+*.exe
+*.tlog
+*.lastbuildstate
+*.log
+*.obj
+*.unsuccessfulbuild
+*.vcxproj
+*.filters
+*.user
