@@ -1,15 +1,22 @@
 #include "LoginWindow.h"
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QVBoxLayout>
-
-#include <QtWidgets/QMessageBox>
+#include "UserWindow.h"
 
 #include <QtCore/QDebug>
 #include <QtCore/QThread>
 
+#include <QtWidgets/QBoxLayout>
+#include <QtWidgets/QMessageBox>
+
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlRecord>
+
 LoginWindow::LoginWindow(QWidget *parent)
 	: QMainWindow(parent)
 {		
+	ui.setupUi(this);	// 모르는 함수, but ui들보다 먼저 실행되야 정상작동
+
+	/* 생성자에서 멤버 변수 db 초기화 */
 	db=QSqlDatabase::addDatabase("QMYSQL");
 	db.setHostName("122.37.76.152");
 	db.setPort(9876);
@@ -17,40 +24,20 @@ LoginWindow::LoginWindow(QWidget *parent)
 	db.setUserName("fiveofruler");
 	db.setPassword("papznye54rw5wKBy");
 
-	ui.setupUi(this);
-	setFixedSize(400,250);
+	/* GUI 부분 */
+	setFixedSize(400,250);	// 크기 변경 금지
 	idLabel=new QLabel(" Your ID ",this);
-	idLineEdit=new QLineEdit(this);
+	idLineEdit=new QLineEdit(this);	// 입력 창
 	pwLabel=new QLabel(" Your PW ",this);
 	pwLineEdit=new QLineEdit(this);
-	pwLineEdit->setEchoMode(QLineEdit::Password);
+	pwLineEdit->setEchoMode(QLineEdit::Password);	// 비밀번호 모자이크 처리
 
 	loginButton=new QPushButton("Login",this);
-	QObject::connect(loginButton,SIGNAL(clicked()),this,SLOT(login()));
+	QObject::connect(loginButton,SIGNAL(clicked()),this,SLOT(login()));	// 로그인 버튼 누르면, login() 실행
+	/* 정상적인 login시, loginSuccess() signal을 보냄. 이는 같은 클래스에서 createUserWindow()호출 */
+	QObject::connect(this,SIGNAL(loginSuccess()),this,SLOT(createUserWindow()));
 
-	te =new QTextEdit(this);
-	te->setGeometry(20,100,300,100);
-///			QSqlRecord rec=query.record();
-			//	for( int c=0; c<rec.count(); c++ )
-
-	/*	QHBoxLayout *idLayout=new QHBoxLayout;
-	idLayout->addWidget(idLabel);
-	idLayout->addWidget(idLineEdit);
-
-	QHBoxLayout *pwLayout=new QHBoxLayout;
-	pwLayout->addWidget(pwLabel);
-	pwLayout->addWidget(pwLineEdit);
-
-	QVBoxLayout *leftLayout=new QVBoxLayout;
-	leftLayout->addLayout(idLayout);
-	leftLayout->addLayout(pwLayout);*/
-
-	//		QVBoxLayout *topLeftLayout=new QVBoxLayout;
-
-	//		QHBoxLayout *mainLayout=new QHBoxLayout;
-	//		mainLayout->addLayout(leftLayout);
-	//		setLayout(leftLayout);
-
+	/* Widget들의 위치 및 크기 설정. Layout클래스로 위치 할당하는 방법으로 변경할 예정 */
 	idLabel->setGeometry(20,30,100,20);
 	idLineEdit->setGeometry(120,30,100,20);
 	pwLabel->setGeometry(20,60,100,20);
@@ -59,13 +46,11 @@ LoginWindow::LoginWindow(QWidget *parent)
 	loginButton->setGeometry(230,30,70,50);
 }
 
-LoginWindow::~LoginWindow()
-{
-
-}
+LoginWindow::~LoginWindow(){qDebug("~LoginWindow()");}
 
 bool LoginWindow::checkValid(QString id)
 {
+	/* SQL Injection 예방을 위해, id 유효성 검사 */
 	if(id.contains("'")||id.contains("--")||id.contains("/")||id.contains(";")||id.contains("*"))
 	{
 		qDebug(" include something wrong character!");
@@ -79,21 +64,29 @@ void LoginWindow::login()
 	loginButton->setDisabled(true);
 	idLineEdit->setDisabled(true);
 	pwLineEdit->setDisabled(true);
-//	WaitWindow *waitWindow=new WaitWindow();
-//	waitWindow->show();
-	QLabel *nl = new QLabel(" Please Wait ... ");
-	nl->setFixedSize(200,70);
-	nl->show();
 	if(checkValid(idLineEdit->text()))
 	{
-		if(!db.isOpen())
+		/* DB가 open되지 않았을경우, 5회까지 연결시도 */
+		for(int i=0;!db.isOpen() && i<5;i++)
 		{
-			qDebug("call open()");
+			qDebug("Try DB Open...");
 			db.open();
+			/* 5회 모두 연결에 실패했을 경우 */
+			//// 5회 시도 안내문 추가 필요
+			if(i==4&&!db.isOpen())
+			{
+				QMessageBox msgBox;
+				msgBox.setText("DB Connection Failure !");
+				msgBox.exec();
+				loginButton->setEnabled(true);
+				idLineEdit->setEnabled(true);
+				pwLineEdit->setEnabled(true);
+				return;
+			}
 		}
-		//open실패시 대처
 		QSqlQuery query;
 		qDebug()<<"SELECT * from user_table where id=\'"+idLineEdit->text()+"\'";
+		/* Prepared Statement 이용 */
 		query.prepare("SELECT * from user_table where id=\'"+idLineEdit->text()+"\'");
 		if( !query.exec() )
 			qDebug() << query.lastError();
@@ -104,25 +97,14 @@ void LoginWindow::login()
 			emit loginSuccess();
 		}
 	}
-//	waitWindow->close();
-//	delete waitWindow;
 	loginButton->setEnabled(true);
 	idLineEdit->setEnabled(true);
 	pwLineEdit->setEnabled(true);
 }
 
-WaitWindow::WaitWindow(QWidget *parent)
-	: QMainWindow(parent)
-{		
-	//메모리할당어떻게?
-	ui.setupUi(this);
-	setWindowFlags(Qt::WindowTitleHint);
-	setFixedSize(400,250);
-	waitLabel=new QLabel(" Wait ... ",this);
-	waitLabel->setGeometry(20,30,100,20);
-	
-}
-WaitWindow::~WaitWindow()
+void LoginWindow::createUserWindow()
 {
-
+	UserWindow *userwindow=new UserWindow(this);
+	userwindow->show();
+	this->hide();
 }
