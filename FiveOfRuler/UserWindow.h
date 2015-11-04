@@ -1,5 +1,5 @@
-#ifndef FIVEOFRULER_H
-#define FIVEOFRULER_H
+#ifndef USERWINDOW_H
+#define USERWINDOW_H
 
 #include <QtWidgets/QMainWindow>
 
@@ -7,27 +7,35 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QTextEdit>
+
+#include <QtSql/QSqlDataBase>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlRecord>
+
 #include "ui_fiveofruler.h"
 
-class FiveOfRuler : public QMainWindow
+class UserWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	FiveOfRuler(int id,QWidget *parent = 0);
-	~FiveOfRuler();
+	UserWindow(QWidget *parent = 0);
+	~UserWindow();
 
 private:
 	Ui::FiveOfRulerClass ui;
+
+	QSqlDatabase db;
+
 	QPushButton *loginButton;
 	QLabel *idLabel,*pwLabel;
 	QLineEdit *idLineEdit,*pwLineEdit;
 
 	QTextEdit *te;
-signals:
 
+signals:
 	private slots:
-		void changeText();
 };
 
-#endif // FIVEOFRULER_H
+#endif // USERWINDOW_H
