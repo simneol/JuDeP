@@ -1,11 +1,17 @@
 #include "LoginWindow.h"
 #include "UserWindow.h"
+#include "DatabaseInfo.h"
 
 #include <QtCore/QDebug>
 #include <QtCore/QThread>
 
+#include <QtWidgets/QAction>
 #include <QtWidgets/QBoxLayout>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
@@ -13,16 +19,16 @@
 
 LoginWindow::LoginWindow(QWidget *parent)
 	: QMainWindow(parent)
-{		
+{
 	ui.setupUi(this);	// 모르는 함수, but ui들보다 먼저 실행되야 정상작동
 
 	/* 생성자에서 멤버 변수 db 초기화 */
 	db=QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("122.37.76.152");
-	db.setPort(9876);
-	db.setDatabaseName("fiveofruler");
-	db.setUserName("fiveofruler");
-	db.setPassword("papznye54rw5wKBy");
+	db.setHostName(DB_HOSTNAME);
+	db.setPort(DB_PORT);
+	db.setDatabaseName(DB_DATABASENAME);
+	db.setUserName(DB_USERNAME);
+	db.setPassword(DB_PASSWORD);
 
 	/* GUI 부분 */
 	setFixedSize(400,250);	// 크기 변경 금지
@@ -93,6 +99,7 @@ void LoginWindow::login()
 		query.next();
 		if(query.value(2).toString()==pwLineEdit->text())
 		{
+			//ID , PW 공백일때 추가해줘야
 			qDebug("password correct");
 			emit loginSuccess();
 		}
