@@ -1,6 +1,8 @@
-#include "fiveofruler.h"
+//#include "fiveofruler.h"
 #include "LoginWindow.h"
-
+//#include "UserWindow.h"
+//#include "DatabaseInfo.h"
+//ธÞที
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
 
