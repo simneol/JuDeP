@@ -26,6 +26,7 @@ private:
 
 signals:
 	private slots:
+		void logout();
 };
 
 #endif // TECHNICIANWINDOW_H

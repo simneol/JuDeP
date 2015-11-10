@@ -35,6 +35,7 @@ LoginWindow::LoginWindow(QMainWindow* prevWindow, QWidget *parent)
 	db.setPassword(DB_PASSWORD);
 
 	connect(ui.loginButton,SIGNAL(clicked()),this,SLOT(login()));	// 로그인 버튼 누르면, login() 실행
+	connect(ui.action_Quit,SIGNAL(triggered()),this,SLOT(close()));
 }
 
 LoginWindow::~LoginWindow(){qDebug("~LoginWindow()");}
@@ -76,17 +77,29 @@ void LoginWindow::login()
 			}
 		}
 		QSqlQuery query;
+		if(ui.userRadioButton->isChecked())
+		{
 		qDebug()<<"SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'";
 		/* Prepared Statement 이용 */
 		query.prepare("SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'");
+		}
+		else
+		{
+		qDebug()<<"SELECT * from technician_table where id=\'"+ui.idLineEdit->text()+"\'";
+		/* Prepared Statement 이용 */
+		query.prepare("SELECT * from technician_table where id=\'"+ui.idLineEdit->text()+"\'");
+		}
 		if( !query.exec() )
 			qDebug() << query.lastError();
 		query.next();
-		if(query.value(2).toString()==ui.pwLineEdit->text())
+		if(query.value(2).toString()==ui.pwLineEdit->text()&&ui.pwLineEdit->text().length()>0)
 		{
 			//ID , PW 공백일때 추가해줘야
 			qDebug("password correct");
-			createUserWindow();
+			if(ui.userRadioButton->isChecked())
+				createUserWindow();
+			else
+				createTechnicianWindow();
 		}
 	}
 	ui.loginButton->setEnabled(true);

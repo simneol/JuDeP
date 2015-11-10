@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>427</width>
-    <height>277</height>
+    <width>394</width>
+    <height>252</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,31 +23,54 @@
    <double>1.000000000000000</double>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>7</x>
-      <y>9</y>
-      <width>341</width>
-      <height>111</height>
+      <x>16</x>
+      <y>16</y>
+      <width>361</width>
+      <height>171</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="mainLayout">
+    <layout class="QVBoxLayout" name="mainLayout">
      <item>
-      <layout class="QFormLayout" name="leftLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="idLabel">
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
+      <layout class="QHBoxLayout" name="topLayout">
+       <item>
+        <widget class="QRadioButton" name="userRadioButton">
          <property name="text">
-          <string> Your ID </string>
+          <string>User</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item>
+        <widget class="QRadioButton" name="technicianRadioButton">
+         <property name="text">
+          <string>Technician</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="midLayout">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="registerButton">
+         <property name="text">
+          <string>Register</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="loginButton">
+         <property name="text">
+          <string>Login</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLabel" name="pwLabel">
          <property name="font">
           <font>
@@ -59,7 +82,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="pwLineEdit">
          <property name="font">
           <font>
@@ -80,50 +103,49 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="idLabel">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string> Your ID </string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="rightLayout">
+      <layout class="QHBoxLayout" name="bottomLayout">
        <item>
-        <widget class="QPushButton" name="loginButton">
+        <widget class="QPushButton" name="forgotIDButton">
          <property name="text">
-          <string>Login</string>
+          <string>Forgot ID</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="registerButton">
+        <widget class="QPushButton" name="forgotPWButton">
          <property name="text">
-          <string>Register</string>
+          <string>Forgot PW</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>
     </layout>
    </widget>
-   <zorder>horizontalLayoutWidget</zorder>
    <zorder>idLineEdit</zorder>
+   <zorder>verticalLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>427</width>
+     <width>394</width>
      <height>31</height>
     </rect>
    </property>
@@ -142,6 +164,16 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>idLineEdit</tabstop>
+  <tabstop>pwLineEdit</tabstop>
+  <tabstop>loginButton</tabstop>
+  <tabstop>registerButton</tabstop>
+  <tabstop>userRadioButton</tabstop>
+  <tabstop>technicianRadioButton</tabstop>
+  <tabstop>forgotIDButton</tabstop>
+  <tabstop>forgotPWButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
