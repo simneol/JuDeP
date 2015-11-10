@@ -1,4 +1,4 @@
-#include "fiveofruler.h"
+//#include "fiveofruler.h"
 #include "LoginWindow.h"
 
 #include <QtWidgets/QApplication>
