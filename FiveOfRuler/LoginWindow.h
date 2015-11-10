@@ -15,7 +15,7 @@ class LoginWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	LoginWindow(QWidget *parent = 0);
+	LoginWindow(QMainWindow* prevWindow=NULL,QWidget *parent = 0);
 	~LoginWindow();
 
 private:
@@ -25,11 +25,10 @@ private:
 
 	/* ¸â¹ö ÇÔ¼ö */
 	bool checkValid(QString id);
+	void createUserWindow();
+	void createTechnicianWindow();
 signals:
-	void loginSuccess();
-
 	private slots:
 		void login();
-		void createUserWindow();
 };
 #endif // LOGINWINDOW_H

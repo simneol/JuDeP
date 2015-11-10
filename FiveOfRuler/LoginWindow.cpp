@@ -1,5 +1,6 @@
 #include "LoginWindow.h"
 #include "UserWindow.h"
+#include "TechnicianWindow.h"
 #include "DatabaseInfo.h"
 
 #include <QDebug>
@@ -17,9 +18,11 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlRecord>
 
-LoginWindow::LoginWindow(QWidget *parent)
+LoginWindow::LoginWindow(QMainWindow* prevWindow, QWidget *parent)
 	: QMainWindow(parent)
 {
+	if(prevWindow!=NULL)
+		prevWindow->close();
 	// Qt Desinger로 구성한 Ui들을 구성하는 함수
 	ui.setupUi(this);
 
@@ -32,8 +35,6 @@ LoginWindow::LoginWindow(QWidget *parent)
 	db.setPassword(DB_PASSWORD);
 
 	connect(ui.loginButton,SIGNAL(clicked()),this,SLOT(login()));	// 로그인 버튼 누르면, login() 실행
-	/* 정상적인 login시, loginSuccess() signal을 보냄. 이는 같은 클래스에서 createUserWindow()호출 */
-	connect(this,SIGNAL(loginSuccess()),this,SLOT(createUserWindow()));
 }
 
 LoginWindow::~LoginWindow(){qDebug("~LoginWindow()");}
@@ -85,7 +86,7 @@ void LoginWindow::login()
 		{
 			//ID , PW 공백일때 추가해줘야
 			qDebug("password correct");
-			emit loginSuccess();
+			createUserWindow();
 		}
 	}
 	ui.loginButton->setEnabled(true);
@@ -95,7 +96,12 @@ void LoginWindow::login()
 
 void LoginWindow::createUserWindow()
 {
-	UserWindow *userwindow=new UserWindow(this);
-	userwindow->show();
-	this->hide();
+	UserWindow *userWindow=new UserWindow(this);
+	userWindow->show();
+}
+
+void LoginWindow::createTechnicianWindow()
+{
+	TechnicianWindow *technicianWindow=new TechnicianWindow(this);
+	technicianWindow->show();
 }
