@@ -9,7 +9,7 @@
 
 #include <QtSql/QSqlDataBase>
 
-#include "ui_fiveofruler.h"
+#include "ui_UserWindow.h"
 
 class UserWindow : public QMainWindow
 {
@@ -20,13 +20,9 @@ public:
 	~UserWindow();
 
 private:
-	Ui::FiveOfRulerClass ui;
+	Ui::UserWindow ui;
 
 	QSqlDatabase db;
-
-	QPushButton *loginButton;
-	QLabel *idLabel,*pwLabel;
-	QLineEdit *idLineEdit,*pwLineEdit;
 
 signals:
 	private slots:

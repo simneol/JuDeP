@@ -1,4 +1,3 @@
-#include "fiveofruler.h"
 #include "LoginWindow.h"
 
 #include <QtWidgets/QApplication>

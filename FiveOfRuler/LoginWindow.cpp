@@ -2,7 +2,7 @@
 #include "UserWindow.h"
 #include "DatabaseInfo.h"
 
-#include <QtCore/QDebug>
+#include <QDebug>
 #include <QtCore/QThread>
 
 #include <QtWidgets/QAction>
@@ -20,7 +20,8 @@
 LoginWindow::LoginWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
-	ui.setupUi(this);	// 모르는 함수, but ui들보다 먼저 실행되야 정상작동
+	// Qt Desinger로 구성한 Ui들을 구성하는 함수
+	ui.setupUi(this);
 
 	/* 생성자에서 멤버 변수 db 초기화 */
 	db=QSqlDatabase::addDatabase("QMYSQL");
@@ -30,26 +31,9 @@ LoginWindow::LoginWindow(QWidget *parent)
 	db.setUserName(DB_USERNAME);
 	db.setPassword(DB_PASSWORD);
 
-	/* GUI 부분 */
-	setFixedSize(400,250);	// 크기 변경 금지
-	idLabel=new QLabel(" Your ID ",this);
-	idLineEdit=new QLineEdit(this);	// 입력 창
-	pwLabel=new QLabel(" Your PW ",this);
-	pwLineEdit=new QLineEdit(this);
-	pwLineEdit->setEchoMode(QLineEdit::Password);	// 비밀번호 모자이크 처리
-
-	loginButton=new QPushButton("Login",this);
-	QObject::connect(loginButton,SIGNAL(clicked()),this,SLOT(login()));	// 로그인 버튼 누르면, login() 실행
+	connect(ui.loginButton,SIGNAL(clicked()),this,SLOT(login()));	// 로그인 버튼 누르면, login() 실행
 	/* 정상적인 login시, loginSuccess() signal을 보냄. 이는 같은 클래스에서 createUserWindow()호출 */
-	QObject::connect(this,SIGNAL(loginSuccess()),this,SLOT(createUserWindow()));
-
-	/* Widget들의 위치 및 크기 설정. Layout클래스로 위치 할당하는 방법으로 변경할 예정 */
-	idLabel->setGeometry(20,30,100,20);
-	idLineEdit->setGeometry(120,30,100,20);
-	pwLabel->setGeometry(20,60,100,20);
-	pwLineEdit->setGeometry(120,60,100,20);
-
-	loginButton->setGeometry(230,30,70,50);
+	connect(this,SIGNAL(loginSuccess()),this,SLOT(createUserWindow()));
 }
 
 LoginWindow::~LoginWindow(){qDebug("~LoginWindow()");}
@@ -67,10 +51,10 @@ bool LoginWindow::checkValid(QString id)
 
 void LoginWindow::login()
 {
-	loginButton->setDisabled(true);
-	idLineEdit->setDisabled(true);
-	pwLineEdit->setDisabled(true);
-	if(checkValid(idLineEdit->text()))
+	ui.loginButton->setDisabled(true);
+	ui.idLineEdit->setDisabled(true);
+	ui.pwLineEdit->setDisabled(true);
+	if(checkValid(ui.idLineEdit->text()))
 	{
 		/* DB가 open되지 않았을경우, 5회까지 연결시도 */
 		for(int i=0;!db.isOpen() && i<5;i++)
@@ -84,29 +68,29 @@ void LoginWindow::login()
 				QMessageBox msgBox;
 				msgBox.setText("DB Connection Failure !");
 				msgBox.exec();
-				loginButton->setEnabled(true);
-				idLineEdit->setEnabled(true);
-				pwLineEdit->setEnabled(true);
+				ui.loginButton->setEnabled(true);
+				ui.idLineEdit->setEnabled(true);
+				ui.pwLineEdit->setEnabled(true);
 				return;
 			}
 		}
 		QSqlQuery query;
-		qDebug()<<"SELECT * from user_table where id=\'"+idLineEdit->text()+"\'";
+		qDebug()<<"SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'";
 		/* Prepared Statement 이용 */
-		query.prepare("SELECT * from user_table where id=\'"+idLineEdit->text()+"\'");
+		query.prepare("SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'");
 		if( !query.exec() )
 			qDebug() << query.lastError();
 		query.next();
-		if(query.value(2).toString()==pwLineEdit->text())
+		if(query.value(2).toString()==ui.pwLineEdit->text())
 		{
 			//ID , PW 공백일때 추가해줘야
 			qDebug("password correct");
 			emit loginSuccess();
 		}
 	}
-	loginButton->setEnabled(true);
-	idLineEdit->setEnabled(true);
-	pwLineEdit->setEnabled(true);
+	ui.loginButton->setEnabled(true);
+	ui.idLineEdit->setEnabled(true);
+	ui.pwLineEdit->setEnabled(true);
 }
 
 void LoginWindow::createUserWindow()
