@@ -120,16 +120,9 @@
      <item>
       <layout class="QHBoxLayout" name="bottomLayout">
        <item>
-        <widget class="QPushButton" name="forgotIDButton">
+        <widget class="QPushButton" name="forgotIdPwButton">
          <property name="text">
-          <string>Forgot ID</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="forgotPWButton">
-         <property name="text">
-          <string>Forgot PW</string>
+          <string>Forgot ID/PW</string>
          </property>
         </widget>
        </item>
@@ -137,8 +130,6 @@
      </item>
     </layout>
    </widget>
-   <zorder>idLineEdit</zorder>
-   <zorder>verticalLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -146,7 +137,7 @@
      <x>0</x>
      <y>0</y>
      <width>394</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">
@@ -171,8 +162,7 @@
   <tabstop>registerButton</tabstop>
   <tabstop>userRadioButton</tabstop>
   <tabstop>technicianRadioButton</tabstop>
-  <tabstop>forgotIDButton</tabstop>
-  <tabstop>forgotPWButton</tabstop>
+  <tabstop>forgotIdPwButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

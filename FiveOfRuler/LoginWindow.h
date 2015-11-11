@@ -30,5 +30,7 @@ private:
 signals:
 	private slots:
 		void login();
+		void createRegisterDialog();
+		void createForgotIdPwDialog();
 };
 #endif // LOGINWINDOW_H

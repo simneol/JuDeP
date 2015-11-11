@@ -1,6 +1,8 @@
 #include "LoginWindow.h"
 #include "UserWindow.h"
 #include "TechnicianWindow.h"
+#include "RegisterDialog.h"
+#include "ForgotIdPwDialog.h"
 #include "DatabaseInfo.h"
 
 #include <QDebug>
@@ -34,8 +36,30 @@ LoginWindow::LoginWindow(QMainWindow* prevWindow, QWidget *parent)
 	db.setUserName(DB_USERNAME);
 	db.setPassword(DB_PASSWORD);
 
+	/* DB가 open되지 않았을경우, 5회까지 연결시도 */
+	for(int i=0;!db.isOpen() && i<5;i++)
+	{
+		qDebug("Try DB Open...");
+		db.open();
+		/* 5회 모두 연결에 실패했을 경우 */
+		//// 5회 시도 안내문 추가 필요
+		if(i==4&&!db.isOpen())
+		{
+			QMessageBox msgBox;
+			msgBox.setText("DB Connection Failure !");
+			msgBox.exec();
+			// 정상작동 체크 -> 프로그램 종료
+			this->close();
+			return;
+		}
+	}
+
 	connect(ui.loginButton,SIGNAL(clicked()),this,SLOT(login()));	// 로그인 버튼 누르면, login() 실행
+	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(createRegisterDialog()));
+	connect(ui.forgotIdPwButton,SIGNAL(clicked()),this,SLOT(createForgotIdPwDialog()));
+
 	connect(ui.action_Quit,SIGNAL(triggered()),this,SLOT(close()));
+
 }
 
 LoginWindow::~LoginWindow(){qDebug("~LoginWindow()");}
@@ -58,36 +82,18 @@ void LoginWindow::login()
 	ui.pwLineEdit->setDisabled(true);
 	if(checkValid(ui.idLineEdit->text()))
 	{
-		/* DB가 open되지 않았을경우, 5회까지 연결시도 */
-		for(int i=0;!db.isOpen() && i<5;i++)
-		{
-			qDebug("Try DB Open...");
-			db.open();
-			/* 5회 모두 연결에 실패했을 경우 */
-			//// 5회 시도 안내문 추가 필요
-			if(i==4&&!db.isOpen())
-			{
-				QMessageBox msgBox;
-				msgBox.setText("DB Connection Failure !");
-				msgBox.exec();
-				ui.loginButton->setEnabled(true);
-				ui.idLineEdit->setEnabled(true);
-				ui.pwLineEdit->setEnabled(true);
-				return;
-			}
-		}
 		QSqlQuery query;
 		if(ui.userRadioButton->isChecked())
 		{
-		qDebug()<<"SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'";
-		/* Prepared Statement 이용 */
-		query.prepare("SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'");
+			qDebug()<<"SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'";
+			/* Prepared Statement 이용 */
+			query.prepare("SELECT * from user_table where id=\'"+ui.idLineEdit->text()+"\'");
 		}
 		else
 		{
-		qDebug()<<"SELECT * from technician_table where id=\'"+ui.idLineEdit->text()+"\'";
-		/* Prepared Statement 이용 */
-		query.prepare("SELECT * from technician_table where id=\'"+ui.idLineEdit->text()+"\'");
+			qDebug()<<"SELECT * from technician_table where id=\'"+ui.idLineEdit->text()+"\'";
+			/* Prepared Statement 이용 */
+			query.prepare("SELECT * from technician_table where id=\'"+ui.idLineEdit->text()+"\'");
 		}
 		if( !query.exec() )
 			qDebug() << query.lastError();
@@ -100,6 +106,12 @@ void LoginWindow::login()
 				createUserWindow();
 			else
 				createTechnicianWindow();
+		}
+		else
+		{
+			QMessageBox msgBox;
+			msgBox.setText(" Please Check Your ID/PW ");
+			msgBox.exec();
 		}
 	}
 	ui.loginButton->setEnabled(true);
@@ -117,4 +129,16 @@ void LoginWindow::createTechnicianWindow()
 {
 	TechnicianWindow *technicianWindow=new TechnicianWindow(this);
 	technicianWindow->show();
+}
+
+void LoginWindow::createRegisterDialog()
+{
+	RegisterDialog *registerDialog=new RegisterDialog(db);
+	registerDialog->show();
+}
+
+void LoginWindow::createForgotIdPwDialog()
+{
+	ForgotIdPwDialog *forgotIdPwDialog=new ForgotIdPwDialog(db);
+	forgotIdPwDialog->show();
 }
