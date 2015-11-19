@@ -1,8 +1,9 @@
-#include "LoginWindow.h"
+#include "WindowManager.h"
+#include "FiveOfRulerDB.h"
 
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QMessageBox>
 #include <QtWidgets\/QSplashScreen>
-#include <QtWidgets/QWidget>
 
 int main(int argc, char *argv[])
 {
@@ -13,11 +14,24 @@ int main(int argc, char *argv[])
 	splash->show();
 
 	Qt::Alignment topRight=Qt::AlignRight|Qt::AlignTop;
-	splash->showMessage(QObject::tr("Connect to Login DB..."),topRight,Qt::white);
 
-	LoginWindow *loginwindow=new LoginWindow();
-	loginwindow->show();
-	splash->finish(loginwindow);
+	splash->showMessage(QObject::tr("Initialize DB..."),topRight,Qt::white);
+	FiveOfRulerDB fiveofrulerDB;
+
+	for(int i=1;i<=5;i++)
+	{
+		splash->showMessage(QObject::tr("Connect to DB...")+" ("+(i+'0')+"/5)",topRight,Qt::white);
+		if(fiveofrulerDB.open())
+			break;
+		if(i==5)
+		{
+			QMessageBox msgbox;
+			msgbox.setText(QObject::tr("Cannot connect to DB !\nPlease check your Internet connection."));
+			msgbox.exec();
+			return 0;
+		}
+	}
+	WindowManager::openWindow("LoginWindow");
 	delete splash;
 
 	return app.exec();
