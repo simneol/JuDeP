@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 
+#include "LoginManager.h"
 #include "ui_LoginWindow.h"
 
 class LoginWindow : public QMainWindow
@@ -14,11 +15,11 @@ public:
 
 private:
 	Ui::LoginWindow ui;	// UIÆÄÀÏ
+	LoginManager loginManager;
 
 signals:
+	void LoginSignal(QString id, QString pw, bool isUser);
 	private slots:
-		void login();
-		void createRegisterDialog();
-		void createForgotIdPwDialog();
+		void emitLoginSignal();
 };
 #endif // LOGINWINDOW_H
