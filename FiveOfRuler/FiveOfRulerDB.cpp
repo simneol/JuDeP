@@ -41,8 +41,8 @@ bool FiveOfRulerDB::checkValid(QString str)
 
 QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 {
-	qDebug().noquote()<<"SELECT * from "+table+"_table where id=\'"+record+"\'";
-	query->prepare("SELECT * from "+table+"_table where id=\'"+record+"\'");
+	qDebug().noquote()<<"SELECT * from "+table+"_table where "+column+"=\'"+record+"\'";
+	query->prepare("SELECT * from "+table+"_table where "+column+"=\'"+record+"\'");
 	if(!query->exec())
 	{
 		qDebug() << query->lastError();
@@ -74,6 +74,38 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<Q
 			totalStmt+="\', \'";
 	}
 	totalStmt+="\')";
+	qDebug().noquote()<<totalStmt;
+	query->prepare(totalStmt);
+	if(!query->exec())
+	{
+		qDebug() << query->lastError();
+		return NULL;
+	}
+	query->next();
+	return query;
+}
+
+QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QString> column,QVector<QString> record,QString primaryKey,QString conditionKey)
+{
+	//record2개이상이면 애러
+	if(column.length()!=record.length())
+	{
+		qDebug()<<"column cannot match valid record !";
+		return NULL;
+	}
+	QString totalStmt="UPDATE "+table+"_table SET ";
+	for(int i=0;i<column.length();i++)
+	{
+		totalStmt+=column[i];
+		totalStmt+=" = ";
+		totalStmt+="\'"+record[i]+"\'";
+		if(i<column.length()-1)
+			totalStmt+=", ";
+	}
+	totalStmt+=" WHERE ";
+	totalStmt+=primaryKey;
+	totalStmt+=" = ";
+	totalStmt+="\'"+conditionKey+"\'";
 	qDebug().noquote()<<totalStmt;
 	query->prepare(totalStmt);
 	if(!query->exec())

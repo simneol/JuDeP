@@ -21,5 +21,6 @@ public:
 	bool open();
 	static QSqlQuery* select(QString table,QString column,QString record);
 	static QSqlQuery* insert(QString table,QVector<QString> column,QVector<QString> record);
+	static QSqlQuery* update(QString table,QVector<QString> column,QVector<QString> record,QString primaryKey,QString conditionKey);
 };
 #endif
