@@ -1,8 +1,8 @@
 #include "RegisterDialog.h"
+#include "FiveOfRulerDB.h"
 
 #include <QtCore/QDebug>
-
-#include <QtSql/QSqlQuery>
+#include <QtCore/QVector>
 
 #include <QtWidgets/QMessageBox>
 
@@ -17,18 +17,24 @@ RegisterDialog::~RegisterDialog(){qDebug("~RegisterDialog()");}
 
 void RegisterDialog::signup()
 {
-	QSqlQuery *query;
+	QVector<QString> column;
+	column.push_back("id");
+	column.push_back("pw");
+	column.push_back("email");
+	/* 미구현 사항 */
+//	column.push_back("question");
+//	column.push_back("answer");
 
-	qDebug()<<"INSERT INTO user_table (id, pw, name, address, email) VALUES (\'"\
-		+ui.idLineEdit->text()+"\', \'"+ui.pwLineEdit->text()+"\', \'"+ui.nameLineEdit->text()+"\', \'"\
-		+ui.addressLineEdit->text()+"\', \'"+ui.emailLineEdit->text()+"\')";
-	/* Prepared Statement 이용 */
-	//	query.prepare("INSERT INTO user_table (id, pw, name, address, email) VALUES (\'"\
-	+ui.idLineEdit->text()+"\', \'"+ui.pwLineEdit->text()+"\', \'"+ui.nameLineEdit->text()+"\', \'"\
-	+ui.addressLineEdit->text()+"\', \'"+ui.emailLineEdit->text()+"\')");
+	QVector<QString> record;
+	record.push_back(ui.idLineEdit->text());
+	record.push_back(ui.pwLineEdit->text());
+	record.push_back(ui.emailLineEdit->text());
 
 	QMessageBox msgBox;
-	msgBox.setText(" Registration Complete ! ");
+	if(FiveOfRulerDB::insert("user",column,record)!=NULL)
+		msgBox.setText(" Registration Complete ! ");
+	else
+		msgBox.setText(" Registration Fail ! ");
 	msgBox.exec();
 	this->close();
 }

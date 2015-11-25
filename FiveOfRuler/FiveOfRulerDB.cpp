@@ -51,3 +51,36 @@ QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 	query->next();
 	return query;
 }
+
+QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<QString> record)
+{
+	if(column.length()!=record.length())
+	{
+		qDebug()<<"column cannot match valid record !";
+		return NULL;
+	}
+	QString totalStmt="INSERT INTO "+table+"_table (";
+	for(int i=0;i<column.length();i++)
+	{
+		totalStmt+=column[i];
+		if(i<column.length()-1)
+			totalStmt+=", ";
+	}
+	totalStmt+=") VALUES (\'";
+	for(int i=0;i<record.length();i++)
+	{
+		totalStmt+=record[i];
+		if(i<record.length()-1)
+			totalStmt+="\', \'";
+	}
+	totalStmt+="\')";
+	qDebug().noquote()<<totalStmt;
+	query->prepare(totalStmt);
+	if(!query->exec())
+	{
+		qDebug() << query->lastError();
+		return NULL;
+	}
+	query->next();
+	return query;
+}

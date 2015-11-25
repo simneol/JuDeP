@@ -1,6 +1,8 @@
 #ifndef FIVEOFRULER_H
 #define FIVEOFRULER_H
 
+#include <QtCore/QVector>
+
 #include <QtSql/QSqlDataBase>
 #include <QtSql/QSqlQuery>
 
@@ -18,5 +20,6 @@ public:
 	~FiveOfRulerDB();
 	bool open();
 	static QSqlQuery* select(QString table,QString column,QString record);
+	static QSqlQuery* insert(QString table,QVector<QString> column,QVector<QString> record);
 };
 #endif
