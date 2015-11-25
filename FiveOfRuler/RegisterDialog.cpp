@@ -21,14 +21,15 @@ void RegisterDialog::signup()
 	column.push_back("id");
 	column.push_back("pw");
 	column.push_back("email");
-	/* 미구현 사항 */
-//	column.push_back("question");
-//	column.push_back("answer");
+	column.push_back("question");
+	column.push_back("answer");
 
 	QVector<QString> record;
 	record.push_back(ui.idLineEdit->text());
 	record.push_back(ui.pwLineEdit->text());
 	record.push_back(ui.emailLineEdit->text());
+	record.push_back(QString::number((ui.questionComboBox->currentIndex())));
+	record.push_back(ui.answerLineEdit->text());
 
 	QMessageBox msgBox;
 	if(FiveOfRulerDB::insert("user",column,record)!=NULL)

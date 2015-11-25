@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>380</width>
-    <height>395</height>
+    <width>376</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,6 +42,9 @@
          <widget class="QRadioButton" name="userRadioButton">
           <property name="text">
            <string>User</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -142,17 +145,36 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="nameLineEdit"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QDateEdit" name="dateEdit"/>
-         </item>
-         <item row="6" column="1">
-          <widget class="QLineEdit" name="addressLineEdit"/>
-         </item>
          <item row="7" column="1">
           <widget class="QLineEdit" name="emailLineEdit"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="questionComboBox">
+           <property name="currentText">
+            <string>내 어렸을 적 별명은?</string>
+           </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>내 어렸을 적 별명은?</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>내가 다녔던 초등학교 이름은?</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>내 보물 1호는?</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="answerLineEdit"/>
          </item>
         </layout>
        </widget>
@@ -169,6 +191,16 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>userRadioButton</tabstop>
+  <tabstop>technicianButton</tabstop>
+  <tabstop>idLineEdit</tabstop>
+  <tabstop>pwLineEdit</tabstop>
+  <tabstop>questionComboBox</tabstop>
+  <tabstop>answerLineEdit</tabstop>
+  <tabstop>emailLineEdit</tabstop>
+  <tabstop>registerButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
