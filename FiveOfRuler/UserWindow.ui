@@ -125,11 +125,23 @@
      <x>0</x>
      <y>0</y>
      <width>357</width>
-     <height>21</height>
+     <height>38</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Menu">
+    <property name="title">
+     <string>&amp;Menu</string>
+    </property>
+    <addaction name="action_Logout"/>
+   </widget>
+   <addaction name="menu_Menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Logout">
+   <property name="text">
+    <string>&amp;Logout</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
