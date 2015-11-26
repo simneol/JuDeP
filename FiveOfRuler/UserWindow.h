@@ -15,7 +15,6 @@ public:
 
 private:
 	Ui::UserWindow ui;
-	int myint;
 
 signals:
 	private slots:
