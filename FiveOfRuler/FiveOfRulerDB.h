@@ -16,6 +16,7 @@ private:
 
 	bool checkValid(QString id);
 public:
+	int myint;
 	FiveOfRulerDB();
 	~FiveOfRulerDB();
 	bool open();
