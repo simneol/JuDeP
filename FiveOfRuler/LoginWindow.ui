@@ -118,7 +118,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="bottomLayout">
+      <layout class="QHBoxLayout" name="botlayout">
        <item>
         <widget class="QPushButton" name="forgotIdPwButton">
          <property name="text">
