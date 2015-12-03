@@ -4,6 +4,7 @@
 #include <QtCore/QVector>
 
 #include <QtSql/QSqlDataBase>
+#include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 
 #include <QtCore/QDebug>
@@ -14,7 +15,7 @@ private:
 	static QSqlDatabase db;
 	static QSqlQuery *query;
 
-	bool checkValid(QString id);
+	static bool checkValid(QString id);
 public:
 	FiveOfRulerDB();
 	~FiveOfRulerDB();

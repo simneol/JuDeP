@@ -15,10 +15,11 @@ public:
 
 private:
 	Ui::RegisterDialog ui;
-
+	bool is_idDuplicated;
 signals:
 	private slots:
 		void signup();
+		void checkIdDuplication();
 };
 
 #endif // REGISTERDIALOG_H

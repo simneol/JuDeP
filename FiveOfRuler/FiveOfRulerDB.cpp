@@ -1,8 +1,6 @@
 #include "FiveOfRulerDB.h"
 #include "DatabaseInfo.h"
 
-#include <QtSql/QSqlError>
-
 QSqlDatabase FiveOfRulerDB::db;
 QSqlQuery *FiveOfRulerDB::query;
 
@@ -93,6 +91,9 @@ QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QString> column,QVector<Q
 		qDebug()<<"column cannot match valid record !";
 		return NULL;
 	}
+	for(int i=0;i<record.size();i++)
+		if(!checkValid(record[i]))
+			return NULL;
 	QString totalStmt="UPDATE "+table+"_table SET ";
 	for(int i=0;i<column.length();i++)
 	{

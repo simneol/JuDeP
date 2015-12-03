@@ -3,7 +3,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMessageBox>
-#include <QtWidgets\/QSplashScreen>
+#include <QtWidgets/QSplashScreen>
 
 int main(int argc, char *argv[])
 {
