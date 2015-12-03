@@ -8,44 +8,40 @@ WindowManager::WindowManager(){qDebug("WindowManager()");}
 
 WindowManager::~WindowManager(){qDebug("~WindowManager()");}
 
-void WindowManager::openWindow(QString windowName)
+void WindowManager::openWindow(QString windowName,Info* info)
 {
-	if(windowName.compare("LoginWindow")==0&&loginWindow==NULL)
+	if(windowName.compare("LoginWindow")==0)
 	{
-		loginWindow=new LoginWindow;
+		if(loginWindow==NULL)
+			loginWindow=new LoginWindow();
 		loginWindow->show();
 	}
-	else if(windowName.compare("UserWindow")==0&&userWindow==NULL)
+	else if(windowName.compare("UserWindow")==0)
 	{
 		if(userWindow==NULL)
-			userWindow=new UserWindow;
+			userWindow=new UserWindow(0,info);
 		userWindow->show();
 	}
-	else if(windowName.compare("TechnicianWindow")==0&&technicianWindow==NULL)
+	else if(windowName.compare("TechnicianWindow")==0)
 	{
-		technicianWindow=new TechnicianWindow;
+		if(technicianWindow==NULL)
+			technicianWindow=new TechnicianWindow();
 		technicianWindow->show();
 	}
 }
 
 void WindowManager::closeWindow(QString windowName)
 {
-	if(windowName.compare("LoginWindow")==0&&loginWindow!=NULL)
+	if(windowName.compare("LoginWindow")==0)
 	{
 		loginWindow->close();
-		delete loginWindow;
-		loginWindow=NULL;
-	//	loginWindow->hide();
 	}
-	else if(windowName.compare("UserWindow")==0&&userWindow!=NULL)
+	else if(windowName.compare("UserWindow")==0)
 	{
 		userWindow->close();
-		delete userWindow;
-		userWindow=NULL;
 	}
-	else if(windowName.compare("TechnicianWindow")==0&&technicianWindow!=NULL)
+	else if(windowName.compare("TechnicianWindow")==0)
 	{
 		technicianWindow->close();
-		delete technicianWindow;
 	}
 }

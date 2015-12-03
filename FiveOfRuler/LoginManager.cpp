@@ -21,11 +21,15 @@ void LoginManager::login(QString id, QString pw, bool isUser)
 	else
 		query=FiveOfRulerDB::select("technician","id",id);
 
-	if(query->value(2).toString()==pw&&pw.length()>0)
+	if(query!=NULL&&query->value(2).toString()==pw&&pw.length()>0)
 	{
 		qDebug("password correct");
 		if(isUser)
-			WindowManager::openWindow("UserWindow");
+		{
+			User *user=new User();
+			user->setId(id);
+			WindowManager::openWindow("UserWindow",(Info*)user);
+		}
 		else
 			WindowManager::openWindow("TechnicianWindow");
 		WindowManager::closeWindow("LoginWindow");

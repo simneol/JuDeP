@@ -5,10 +5,12 @@
 #include "UserWindow.h"
 #include "TechnicianWindow.h"
 
+#include <QtCore/QObject>
 #include <QtWidgets/QMainWindow>
 
-class WindowManager
+class WindowManager : public QObject
 {
+	Q_OBJECT
 private:
 	static LoginWindow *loginWindow;
 	static UserWindow *userWindow;
@@ -16,7 +18,9 @@ private:
 public:
 	WindowManager();
 	~WindowManager();
-	static void openWindow(QString windowName);
+	static void openWindow(QString windowName,Info* info=NULL);
 	static void closeWindow(QString windowName);
+signals:
+	private slots:
 };
 #endif

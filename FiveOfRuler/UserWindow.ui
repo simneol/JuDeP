@@ -92,7 +92,7 @@
      <string>QnA</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="logiut">
+   <widget class="QPushButton" name="logout">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -125,7 +125,7 @@
      <x>0</x>
      <y>0</y>
      <width>357</width>
-     <height>38</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">

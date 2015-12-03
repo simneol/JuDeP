@@ -10,13 +10,23 @@ RegisterDialog::RegisterDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+	is_idDuplicated=true;
+
 	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(signup()));
+	connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(checkIdDuplication()));
 }
 
 RegisterDialog::~RegisterDialog(){qDebug("~RegisterDialog()");}
 
 void RegisterDialog::signup()
 {
+	if(is_idDuplicated)
+	{
+		QMessageBox msgbox;
+		msgbox.setText("Please check duplication !");
+		msgbox.exec();
+		return;
+	}
 	QVector<QString> column;
 	column.push_back("id");
 	column.push_back("pw");
@@ -38,4 +48,13 @@ void RegisterDialog::signup()
 		msgBox.setText(" Registration Fail ! ");
 	msgBox.exec();
 	this->close();
+}
+
+void RegisterDialog::checkIdDuplication()
+{
+	QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
+	if(query->value(0).toString().compare(ui.idLineEdit->text())!=0)
+		is_idDuplicated=false;
+	else
+		is_idDuplicated=true;
 }
