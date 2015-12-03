@@ -1,6 +1,6 @@
 #include "WindowManager.h"
 #include "FiveOfRulerDB.h"
-
+// This is test branch !
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QSplashScreen>
