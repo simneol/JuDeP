@@ -21,7 +21,7 @@ void LoginManager::login(QString id, QString pw, bool isUser)
 	else
 		query=FiveOfRulerDB::select("technician","id",id);
 
-	if(query!=NULL&&query->value(2).toString()==pw&&pw.length()>0)
+	if(query!=NULL&&query->value(1).toString()==pw&&pw.length()>0)
 	{
 		qDebug("password correct");
 		if(isUser)
