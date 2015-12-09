@@ -17,16 +17,12 @@ QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
 
 void QNAWriteDialog::slotWrite()
 {
-	QVector<QString> column,record;
-	column.push_back("writer");
-	column.push_back("title");
-	column.push_back("content");
+	QVector<QPair<QString,QString> > data;
+	data.push_back(qMakePair<QString,QString>("writer",user->getId()));
+	data.push_back(qMakePair<QString,QString>("title",ui.head->text()));
+	data.push_back(qMakePair<QString,QString>("content",ui.content->toPlainText()));
 
-	record.push_back(user->getId());
-	record.push_back(ui.head->text());
-	record.push_back(ui.content->toPlainText());
-	
-	QSqlQuery *query=FiveOfRulerDB::insert("qna",column,record);
+	QSqlQuery *query=FiveOfRulerDB::insert("qna",data);
 	QMessageBox msgbox;
 	msgbox.setText("Success !");
 	msgbox.exec();

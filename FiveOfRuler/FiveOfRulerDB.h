@@ -2,6 +2,7 @@
 #define FIVEOFRULER_H
 
 #include <QtCore/QVector>
+#include <QtCore/QPair>
 
 #include <QtSql/QSqlDataBase>
 #include <QtSql/QSqlError>
@@ -21,7 +22,7 @@ public:
 	~FiveOfRulerDB();
 	bool open();
 	static QSqlQuery* select(QString table,QString column,QString record);
-	static QSqlQuery* insert(QString table,QVector<QString> column,QVector<QString> record);
-	static QSqlQuery* update(QString table,QVector<QString> column,QVector<QString> record,QString primaryKey,QString conditionKey);
+	static QSqlQuery* insert(QString table,QVector<QPair<QString,QString> > data);
+	static QSqlQuery* update(QString table,QVector<QPair<QString,QString> > data);
 };
 #endif

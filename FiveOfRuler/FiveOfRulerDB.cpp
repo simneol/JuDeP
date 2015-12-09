@@ -50,25 +50,20 @@ QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 	return query;
 }
 
-QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<QString> record)
+QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > data)
 {
-	if(column.length()!=record.length())
-	{
-		qDebug()<<"column cannot match valid record !";
-		return NULL;
-	}
 	QString totalStmt="INSERT INTO "+table+"_table (";
-	for(int i=0;i<column.length();i++)
+	for(int i=0;i<data.length();i++)
 	{
-		totalStmt+=column[i];
-		if(i<column.length()-1)
+		totalStmt+=data[i].first;
+		if(i<data.length()-1)
 			totalStmt+=", ";
 	}
 	totalStmt+=") VALUES (\'";
-	for(int i=0;i<record.length();i++)
+	for(int i=0;i<data.length();i++)
 	{
-		totalStmt+=record[i];
-		if(i<record.length()-1)
+		totalStmt+=data[i].second;
+		if(i<data.length()-1)
 			totalStmt+="\', \'";
 	}
 	totalStmt+="\')";
@@ -83,30 +78,24 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<Q
 	return query;
 }
 
-QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QString> column,QVector<QString> record,QString primaryKey,QString conditionKey)
+QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QPair<QString,QString> >data)
 {
-	//record2개이상이면 애러
-	if(column.length()!=record.length())
-	{
-		qDebug()<<"column cannot match valid record !";
-		return NULL;
-	}
-	for(int i=0;i<record.size();i++)
-		if(!checkValid(record[i]))
+	for(int i=0;i<data.size();i++)
+		if(!checkValid(data[i].first) || !checkValid(data[i].second))
 			return NULL;
 	QString totalStmt="UPDATE "+table+"_table SET ";
-	for(int i=0;i<column.length();i++)
+	for(int i=1;i<data.length();i++)
 	{
-		totalStmt+=column[i];
+		totalStmt+=data[i].first;
 		totalStmt+=" = ";
-		totalStmt+="\'"+record[i]+"\'";
-		if(i<column.length()-1)
+		totalStmt+="\'"+data[i].second+"\'";
+		if(i<data.length()-1)
 			totalStmt+=", ";
 	}
 	totalStmt+=" WHERE ";
-	totalStmt+=primaryKey;
+	totalStmt+=data[0].first;
 	totalStmt+=" = ";
-	totalStmt+="\'"+conditionKey+"\'";
+	totalStmt+="\'"+data[1].second+"\'";
 	qDebug().noquote()<<totalStmt;
 	query->prepare(totalStmt);
 	if(!query->exec())
