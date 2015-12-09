@@ -10,7 +10,6 @@ QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
-	is_idDuplicated=true;
 
 	//connect(ui.btn_,SIGNAL(clicked()),this,SLOT(signup()));
 	//connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(checkIdDuplication()));
