@@ -2,6 +2,7 @@
 #include "WindowManager.h"
 #include "FiveOfRulerDB.h"
 #include "QuestionReplyDialog.h"
+#include "UserInstanceManager.h"
 
 #include <QtSql/QSqlQuery>
 #include <QtWidgets/QMessageBox>
@@ -31,10 +32,16 @@ void LoginManager::slotLogin(QString id, QString pw, bool isUser)
 		{
 			User *user=new User();
 			user->setId(id);
+			InstanceOfUserManager.setInfo(user);
+
 			WindowManager::slotOpenWindow("UserWindow",(Info*)user);
 		}
-		else
+		// Technician User
+		else if(isUser == false)
+		{
+
 			WindowManager::slotOpenWindow("TechnicianWindow");
+		}
 		WindowManager::slotCloseWindow("LoginWindow");
 	}
 	else
