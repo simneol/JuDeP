@@ -1,6 +1,7 @@
 #include "LoginManager.h"
 #include "WindowManager.h"
 #include "FiveOfRulerDB.h"
+#include "QuestionReplyDialog.h"
 
 #include <QtSql/QSqlQuery>
 #include <QtWidgets/QMessageBox>
@@ -17,7 +18,7 @@ void LoginManager::slotLogin(QString id, QString pw, bool isUser)
 {
 	QSqlQuery *query;
 	if(isUser)
-		query=FiveOfRulerDB::select("user","id",id);
+		query=FiveOfRulerDB::select("user","id", id);
 	else
 		query=FiveOfRulerDB::select("technician","id",id);
 
