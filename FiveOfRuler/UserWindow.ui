@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>357</width>
-    <height>389</height>
+    <width>400</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      <string>User</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RegiterProduct">
+   <widget class="QPushButton" name="btn_RegiterProduct">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -40,7 +40,7 @@
      <string>RegiterProduct</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RepairStatus">
+   <widget class="QPushButton" name="btn_RepairStatus">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -53,7 +53,7 @@
      <string>RepairStatus</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="message">
+   <widget class="QPushButton" name="btn_message">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -66,7 +66,7 @@
      <string>Message</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RequestRepair">
+   <widget class="QPushButton" name="btn_RequestRepair">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -79,7 +79,7 @@
      <string>RequestRepair</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="QnA">
+   <widget class="QPushButton" name="btn_QnA">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -92,7 +92,7 @@
      <string>QnA</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="logout">
+   <widget class="QPushButton" name="btn_Logout">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -105,7 +105,7 @@
      <string>Logout</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Withdrawal">
+   <widget class="QPushButton" name="btn_Withdrawal">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -119,12 +119,12 @@
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="menubar_main">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>357</width>
+     <width>400</width>
      <height>21</height>
     </rect>
    </property>
