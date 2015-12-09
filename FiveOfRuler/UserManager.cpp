@@ -6,6 +6,7 @@ UserManager::UserManager(Info* userInfo)
 {
 	user=(User*)userInfo;
 	qnaWriteDialog=NULL;
+	qnaSeeDialog = NULL;
 }
 UserManager::~UserManager(){qDebug("~UserManager");}
 
@@ -22,4 +23,11 @@ void UserManager::openQNAWriteDialog()
 	if(qnaWriteDialog==NULL)
 		qnaWriteDialog=new QNAWriteDialog(0,user);
 	qnaWriteDialog->show();
+}
+
+void UserManager::openQNASeeDialog()
+{
+	if (qnaSeeDialog == NULL)
+		qnaSeeDialog = new QlistWindow(0, user);
+	qnaSeeDialog->show();
 }

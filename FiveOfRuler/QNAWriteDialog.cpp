@@ -10,7 +10,10 @@ QNAWriteDialog::QNAWriteDialog(QWidget *parent,User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
 	this->user=user;
-	connect(ui.sendcansel,SIGNAL(accepted()),this,SLOT(write()));
+	connect(ui.sendconfirm, SIGNAL(clicked()), this, SLOT(write()));	// È®ÀÎÇÏ°í
+	connect(ui.sendconfirm, SIGNAL(clicked()), this, SLOT(closeQNA()));	// ²ö´Ù¾ç
+
+	connect(ui.sendcansel, SIGNAL(clicked()), this, SLOT(closeQNA()));	// ²ö´Ù¾ç
 }
 
 QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
@@ -30,5 +33,10 @@ void QNAWriteDialog::write()
 	QMessageBox msgbox;
 	msgbox.setText("Success !");
 	msgbox.exec();
+	this->close();
+}
+
+void QNAWriteDialog::closeQNA()
+{
 	this->close();
 }

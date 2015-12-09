@@ -12,6 +12,7 @@ UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	connect(ui.action_Logout,SIGNAL(triggered()),userManager,SLOT(logout()));
 	connect(ui.logout,SIGNAL(clicked()),userManager,SLOT(logout()));
 	connect(ui.QnA,SIGNAL(clicked()),userManager,SLOT(openQNAWriteDialog()));
+	connect(ui.SeeQnA, SIGNAL(clicked()), userManager, SLOT(openQNASeeDialog()));
 }
 
 UserWindow::~UserWindow(){qDebug("~UserWindow()");}

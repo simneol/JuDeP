@@ -4,6 +4,7 @@
 #include "LoginWindow.h"
 #include "UserWindow.h"
 #include "TechnicianWindow.h"
+#include "QNAWriteDialog.h"
 
 #include <QtCore/QObject>
 #include <QtWidgets/QMainWindow>

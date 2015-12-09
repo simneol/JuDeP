@@ -118,6 +118,19 @@
      <string>Withdrawal</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="SeeQnA">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>140</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SeeQNA</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -125,7 +138,7 @@
      <x>0</x>
      <y>0</y>
      <width>357</width>
-     <height>21</height>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">
