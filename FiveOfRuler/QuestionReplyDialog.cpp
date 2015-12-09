@@ -11,11 +11,23 @@ QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	//connect(ui.btn_,SIGNAL(clicked()),this,SLOT(signup()));
-	//connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(checkIdDuplication()));
+	// submit button connect
+	connect(ui.btn_Submit,
+		SIGNAL(clicked()),
+		this,
+		SLOT(slotSubmit()));
+
+	// cancle button connect
+	connect(ui.btn_Cancle,
+		SIGNAL(clicked()),
+		this,
+		SLOT(slotCancle()));
 }
 
-QuestionReplyDialog::~QuestionReplyDialog(){qDebug("~QuestionReplyDialog()");}
+QuestionReplyDialog::~QuestionReplyDialog()
+{
+	qDebug("~QuestionReplyDialog()");
+}
 
 void QuestionReplyDialog::slotSubmit()
 {
