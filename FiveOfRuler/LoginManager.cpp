@@ -13,7 +13,7 @@ LoginManager::LoginManager()
 
 LoginManager::~LoginManager(){}
 
-void LoginManager::login(QString id, QString pw, bool isUser)
+void LoginManager::slotLogin(QString id, QString pw, bool isUser)
 {
 	QSqlQuery *query;
 	if(isUser)
@@ -21,18 +21,20 @@ void LoginManager::login(QString id, QString pw, bool isUser)
 	else
 		query=FiveOfRulerDB::select("technician","id",id);
 
-	if(query!=NULL&&query->value(1).toString()==pw&&pw.length()>0)
+	if(query != NULL 
+		&& query->value(1).toString() == pw
+		&& pw.length() > 0)
 	{
 		qDebug("password correct");
 		if(isUser)
 		{
 			User *user=new User();
 			user->setId(id);
-			WindowManager::openWindow("UserWindow",(Info*)user);
+			WindowManager::slotOpenWindow("UserWindow",(Info*)user);
 		}
 		else
-			WindowManager::openWindow("TechnicianWindow");
-		WindowManager::closeWindow("LoginWindow");
+			WindowManager::slotOpenWindow("TechnicianWindow");
+		WindowManager::slotCloseWindow("LoginWindow");
 	}
 	else
 	{
@@ -41,7 +43,7 @@ void LoginManager::login(QString id, QString pw, bool isUser)
 		msgBox.exec();
 	}
 }
-void LoginManager::openRegisterDialog()
+void LoginManager::slotOpenRegisterDialog()
 {
 	if(registerDialog==NULL)
 	{
@@ -51,7 +53,7 @@ void LoginManager::openRegisterDialog()
 	else
 		registerDialog->hasFocus();
 }
-void LoginManager::openForgotIdPwDialog()
+void LoginManager::slotOpenForgotIdPwDialog()
 {
 	if(forgotIdPwDialog==NULL)
 	{

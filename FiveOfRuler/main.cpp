@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 	}
-	WindowManager::openWindow("LoginWindow");
+	WindowManager::slotOpenWindow("LoginWindow");
 	delete splash;
 
 	return app.exec();

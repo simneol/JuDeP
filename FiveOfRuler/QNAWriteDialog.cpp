@@ -10,12 +10,12 @@ QNAWriteDialog::QNAWriteDialog(QWidget *parent,User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
 	this->user=user;
-	connect(ui.sendcansel,SIGNAL(accepted()),this,SLOT(write()));
+	connect(ui.sendcansel,SIGNAL(accepted()),this,SLOT(slotWrite()));
 }
 
 QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
 
-void QNAWriteDialog::write()
+void QNAWriteDialog::slotWrite()
 {
 	QVector<QString> column,record;
 	column.push_back("writer");

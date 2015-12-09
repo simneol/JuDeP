@@ -7,13 +7,13 @@ TechnicianWindow::TechnicianWindow(QWidget *parent)
 	: QMainWindow(parent)
 {		
 	ui.setupUi(this);
-	connect(ui.action_Logout,SIGNAL(triggered()),this,SLOT(logout()));
+	connect(ui.action_Logout,SIGNAL(triggered()),this,SLOT(slotLogout()));
 }
 
 TechnicianWindow::~TechnicianWindow(){qDebug("~TechnicianWindow()");}
 
-void TechnicianWindow::logout()
+void TechnicianWindow::slotLogout()
 {
-	WindowManager::openWindow("LoginWindow");
-	WindowManager::closeWindow("TechnicianWindow");
+	WindowManager::slotOpenWindow("LoginWindow");
+	WindowManager::slotCloseWindow("TechnicianWindow");
 }

@@ -19,7 +19,7 @@ private:
 	User *user;
 
 	public slots:
-		void logout();
-		void openQNAWriteDialog();
+		void slotLogout();
+		void slotOpenQNAWriteDialog();
 };
 #endif

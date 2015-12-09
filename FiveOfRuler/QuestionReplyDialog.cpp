@@ -1,4 +1,4 @@
-#include "RegisterDialog.h"
+#include "QuestionReplyDialog.h"
 #include "FiveOfRulerDB.h"
 
 #include <QtCore/QDebug>
@@ -6,21 +6,21 @@
 
 #include <QtWidgets/QMessageBox>
 
-RegisterDialog::RegisterDialog(QWidget *parent)
+QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
 	is_idDuplicated=true;
 
-	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(slotSignup()));
-	connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(slotCheckIdDuplication()));
+	//connect(ui.btn_,SIGNAL(clicked()),this,SLOT(signup()));
+	//connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(checkIdDuplication()));
 }
 
-RegisterDialog::~RegisterDialog(){qDebug("~RegisterDialog()");}
+QuestionReplyDialog::~QuestionReplyDialog(){qDebug("~QuestionReplyDialog()");}
 
-void RegisterDialog::slotSignup()
+void QuestionReplyDialog::slotSubmit()
 {
-	if(is_idDuplicated)
+	/*if(is_idDuplicated)
 	{
 		QMessageBox msgbox;
 		msgbox.setText("Please check duplication !");
@@ -47,14 +47,14 @@ void RegisterDialog::slotSignup()
 	else
 		msgBox.setText(" Registration Fail ! ");
 	msgBox.exec();
-	this->close();
+	this->close();*/
 }
 
-void RegisterDialog::slotCheckIdDuplication()
+void QuestionReplyDialog::slotCancle()
 {
-	QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
+	/*QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
 	if(query->value(0).toString().compare(ui.idLineEdit->text())!=0)
 		is_idDuplicated=false;
 	else
-		is_idDuplicated=true;
+		is_idDuplicated=true;*/
 }
