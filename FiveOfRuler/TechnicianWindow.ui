@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>357</width>
-    <height>389</height>
+    <height>297</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>140</x>
       <y>30</y>
       <width>111</width>
       <height>21</height>
@@ -27,109 +27,71 @@
      <string>Technician</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_RegiterProduct">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>170</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RegiterProduct</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_RepairStatusrenew">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>230</y>
-      <width>151</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RepairStatus Renew</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_message">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
+      <x>10</x>
       <y>110</y>
-      <width>91</width>
-      <height>23</height>
+      <width>101</width>
+      <height>83</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Message</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_message">
+       <property name="text">
+        <string>Message</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_QnA">
+       <property name="text">
+        <string>QnA</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_RegiterProduct">
+       <property name="text">
+        <string>RegiterProduct</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="btn_productSearch">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>200</y>
-      <width>151</width>
-      <height>23</height>
+      <x>209</x>
+      <y>80</y>
+      <width>131</width>
+      <height>112</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Product Search</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_QnA">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>140</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>QnA</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_logout">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>290</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Logout</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_Withdrawal">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>320</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Withdrawal</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_compoSearch">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>260</y>
-      <width>151</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Component Search</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btn_productSearch">
+       <property name="text">
+        <string>Product Search</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_compoSearch">
+       <property name="text">
+        <string>Component Search</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_RepairStatus">
+       <property name="text">
+        <string>Repair Status</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
