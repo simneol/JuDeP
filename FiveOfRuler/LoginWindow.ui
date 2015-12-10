@@ -36,7 +36,7 @@
      <item>
       <layout class="QHBoxLayout" name="topLayout">
        <item>
-        <widget class="QRadioButton" name="userRadioButton">
+        <widget class="QRadioButton" name="radio_User">
          <property name="text">
           <string>User</string>
          </property>
@@ -46,7 +46,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="technicianRadioButton">
+        <widget class="QRadioButton" name="radio_Technician">
          <property name="text">
           <string>Technician</string>
          </property>
@@ -57,21 +57,21 @@
      <item>
       <layout class="QGridLayout" name="midLayout">
        <item row="1" column="2">
-        <widget class="QPushButton" name="registerButton">
+        <widget class="QPushButton" name="btn_Register">
          <property name="text">
           <string>Register</string>
          </property>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="loginButton">
+        <widget class="QPushButton" name="btn_Login">
          <property name="text">
           <string>Login</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="pwLabel">
+        <widget class="QLabel" name="label_Pw">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -83,7 +83,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="pwLineEdit">
+        <widget class="QLineEdit" name="lineEdit_Pw">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -95,7 +95,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="idLineEdit">
+        <widget class="QLineEdit" name="lineEdit_Id">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -104,7 +104,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="idLabel">
+        <widget class="QLabel" name="label_Id">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -120,7 +120,7 @@
      <item>
       <layout class="QHBoxLayout" name="botlayout">
        <item>
-        <widget class="QPushButton" name="forgotIdPwButton">
+        <widget class="QPushButton" name="btn_ForgotIdPw">
          <property name="text">
           <string>Forgot ID/PW</string>
          </property>
@@ -137,7 +137,11 @@
      <x>0</x>
      <y>0</y>
      <width>394</width>
+<<<<<<< HEAD
      <height>38</height>
+=======
+     <height>31</height>
+>>>>>>> e29bd90e46d2066a7cbe797db1c35e67b25ac23e
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">
@@ -156,13 +160,13 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>idLineEdit</tabstop>
-  <tabstop>pwLineEdit</tabstop>
-  <tabstop>loginButton</tabstop>
-  <tabstop>registerButton</tabstop>
-  <tabstop>userRadioButton</tabstop>
-  <tabstop>technicianRadioButton</tabstop>
-  <tabstop>forgotIdPwButton</tabstop>
+  <tabstop>lineEdit_Id</tabstop>
+  <tabstop>lineEdit_Pw</tabstop>
+  <tabstop>btn_Login</tabstop>
+  <tabstop>btn_Register</tabstop>
+  <tabstop>radio_User</tabstop>
+  <tabstop>radio_Technician</tabstop>
+  <tabstop>btn_ForgotIdPw</tabstop>
  </tabstops>
  <resources/>
  <connections/>

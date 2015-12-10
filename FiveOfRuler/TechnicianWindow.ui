@@ -27,7 +27,7 @@
      <string>Technician</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RegiterProduct">
+   <widget class="QPushButton" name="btn_RegiterProduct">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -40,7 +40,7 @@
      <string>RegiterProduct</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RepairStatusrenew">
+   <widget class="QPushButton" name="btn_RepairStatusrenew">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -53,7 +53,7 @@
      <string>RepairStatus Renew</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="message">
+   <widget class="QPushButton" name="btn_message">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -66,7 +66,7 @@
      <string>Message</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="productSearch">
+   <widget class="QPushButton" name="btn_productSearch">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -79,7 +79,7 @@
      <string>Product Search</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="QnA">
+   <widget class="QPushButton" name="btn_QnA">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -92,7 +92,7 @@
      <string>QnA</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="logout">
+   <widget class="QPushButton" name="btn_logout">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -105,7 +105,7 @@
      <string>Logout</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Withdrawal">
+   <widget class="QPushButton" name="btn_Withdrawal">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -118,7 +118,7 @@
      <string>Withdrawal</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="compoSearch">
+   <widget class="QPushButton" name="btn_compoSearch">
     <property name="geometry">
      <rect>
       <x>30</x>

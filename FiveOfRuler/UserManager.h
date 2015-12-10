@@ -22,8 +22,13 @@ private:
 	User *user;
 
 	public slots:
+<<<<<<< HEAD
 		void logout();
 		void openQNAWriteDialog();
 		void openQNASeeDialog();
+=======
+		void slotLogout();
+		void slotOpenQNAWriteDialog();
+>>>>>>> e29bd90e46d2066a7cbe797db1c35e67b25ac23e
 };
 #endif

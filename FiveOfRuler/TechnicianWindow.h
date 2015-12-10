@@ -4,6 +4,7 @@
 #include <QtWidgets/QMainWindow>
 
 #include "ui_TechnicianWindow.h"
+#include "QuestionReplyDialog.h"
 
 class TechnicianWindow : public QMainWindow
 {
@@ -12,13 +13,14 @@ class TechnicianWindow : public QMainWindow
 public:
 	TechnicianWindow(QWidget *parent = 0);
 	~TechnicianWindow();
-
+	QuestionReplyDialog *targetQuestionReplyDialog;
 private:
 	Ui::TechnicianWindow ui;
 
 signals:
 	private slots:
-		void logout();
+		void slotLogout();
+		void slotOpenQuestionReplyWindow();
 };
 
 #endif // TECHNICIANWINDOW_H

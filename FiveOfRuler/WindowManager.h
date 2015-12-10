@@ -19,8 +19,8 @@ private:
 public:
 	WindowManager();
 	~WindowManager();
-	static void openWindow(QString windowName,Info* info=NULL);
-	static void closeWindow(QString windowName);
+	static void slotOpenWindow(QString windowName,Info* info=NULL);
+	static void slotCloseWindow(QString windowName);
 signals:
 	private slots:
 };
