@@ -13,7 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-<<<<<<< HEAD
   <widget class="QScrollBar" name="scroll">
    <property name="geometry">
     <rect>
@@ -34,22 +33,6 @@
    </property>
   </widget>
   <widget class="QLabel" name="label">
-=======
-  <widget class="QDialogButtonBox" name="btn_sendcansel">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>300</y>
-     <width>156</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_QnA">
->>>>>>> e29bd90e46d2066a7cbe797db1c35e67b25ac23e
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -62,7 +45,7 @@
     <string>QnA</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="textEdit_title">
+  <widget class="QLineEdit" name="head">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -72,38 +55,15 @@
     </rect>
    </property>
   </widget>
-  <widget class="QScrollArea" name="scrollArea">
+  <widget class="QTextEdit" name="content">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>100</y>
-     <width>291</width>
-     <height>181</height>
+     <y>90</y>
+     <width>271</width>
+     <height>191</height>
     </rect>
    </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
-   </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>289</width>
-      <height>179</height>
-     </rect>
-    </property>
-    <widget class="QTextEdit" name="textEdit_Write">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>291</width>
-       <height>181</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
   </widget>
   <widget class="QPushButton" name="sendconfirm">
    <property name="geometry">

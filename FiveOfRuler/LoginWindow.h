@@ -18,8 +18,8 @@ private:
 	LoginManager loginManager;
 
 signals:
-	void slotLoginSignal(QString id, QString pw, bool isUser);
+	void LoginSignal(QString id, QString pw, bool isUser);
 	private slots:
-		void slotEmitLoginSignal();
+		void emitLoginSignal();
 };
 #endif // LOGINWINDOW_H

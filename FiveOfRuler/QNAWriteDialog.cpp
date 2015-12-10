@@ -10,26 +10,26 @@ QNAWriteDialog::QNAWriteDialog(QWidget *parent,User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
 	this->user=user;
-<<<<<<< HEAD
 	connect(ui.sendconfirm, SIGNAL(clicked()), this, SLOT(write()));	// È®ÀÎÇÏ°í
 	connect(ui.sendconfirm, SIGNAL(clicked()), this, SLOT(closeQNA()));	// ²ö´Ù¾ç
 
 	connect(ui.sendcansel, SIGNAL(clicked()), this, SLOT(closeQNA()));	// ²ö´Ù¾ç
-=======
-	connect(ui.sendcansel,SIGNAL(accepted()),this,SLOT(slotWrite()));
->>>>>>> e29bd90e46d2066a7cbe797db1c35e67b25ac23e
 }
 
 QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
 
-void QNAWriteDialog::slotWrite()
+void QNAWriteDialog::write()
 {
-	QVector<QPair<QString,QString> > data;
-	data.push_back(qMakePair<QString,QString>("writer",user->getId()));
-	data.push_back(qMakePair<QString,QString>("title",ui.head->text()));
-	data.push_back(qMakePair<QString,QString>("content",ui.content->toPlainText()));
+	QVector<QString> column,record;
+	column.push_back("writer");
+	column.push_back("title");
+	column.push_back("content");
 
-	QSqlQuery *query=FiveOfRulerDB::insert("qna",data);
+	record.push_back(user->getId());
+	record.push_back(ui.head->text());
+	record.push_back(ui.content->toPlainText());
+	
+	QSqlQuery *query=FiveOfRulerDB::insert("qna",column,record);
 	QMessageBox msgbox;
 	msgbox.setText("Success !");
 	msgbox.exec();

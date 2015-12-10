@@ -28,7 +28,7 @@ private:
 	Ui::QNASeeDialog ui;
 	QStringListModel *model;
 
-	void connectSignal();
+	void connectSignal(User *user);
 };
 
 #endif // QLISTWINDOW_H

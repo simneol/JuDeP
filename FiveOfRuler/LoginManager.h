@@ -17,8 +17,8 @@ private:
 	ForgotIdPwDialog *forgotIdPwDialog;
 signals:
 	public slots:
-	void slotLogin(QString id, QString pw, bool isUser);
-	void slotOpenRegisterDialog();
-	void slotOpenForgotIdPwDialog();
+	void login(QString id, QString pw, bool isUser);
+	void openRegisterDialog();
+	void openForgotIdPwDialog();
 };
 #endif

@@ -12,13 +12,13 @@ UserManager::~UserManager(){qDebug("~UserManager");}
 
 User* UserManager::getUser(){return user;}
 
-void UserManager::slotLogout()
+void UserManager::logout()
 {
-	WindowManager::slotOpenWindow("LoginWindow");
-	WindowManager::slotCloseWindow("UserWindow");
+	WindowManager::openWindow("LoginWindow");
+	WindowManager::closeWindow("UserWindow");
 }
 
-void UserManager::slotOpenQNAWriteDialog()
+void UserManager::openQNAWriteDialog()
 {
 	if(qnaWriteDialog==NULL)
 		qnaWriteDialog=new QNAWriteDialog(0,user);

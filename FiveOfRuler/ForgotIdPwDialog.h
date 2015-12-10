@@ -18,9 +18,9 @@ private:
 
 signals:
 	private slots:
-		void slotFind();
-		void slotIdshow();
-		void slotPwshow();
+		void find();
+		void idshow();
+		void pwshow();
 };
 
 #endif // FORGOTIDPWDIALOGDIALOG_H

@@ -9,15 +9,15 @@ ForgotIdPwDialog::ForgotIdPwDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
-	slotIdshow();
-	connect(ui.idRadioButton,SIGNAL(clicked()),this,SLOT(slotIdshow()));
-	connect(ui.pwRadioButton,SIGNAL(clicked()),this,SLOT(slotPwshow()));
-	connect(ui.findButton,SIGNAL(clicked()),this,SLOT(slotFind()));
+	idshow();
+	connect(ui.idRadioButton,SIGNAL(clicked()),this,SLOT(idshow()));
+	connect(ui.pwRadioButton,SIGNAL(clicked()),this,SLOT(pwshow()));
+	connect(ui.findButton,SIGNAL(clicked()),this,SLOT(find()));
 }
 
 ForgotIdPwDialog::~ForgotIdPwDialog(){qDebug("~ForgotIdPwDialog()");}
 
-void ForgotIdPwDialog::slotFind()
+void ForgotIdPwDialog::find()
 {
 	if(ui.idRadioButton->isChecked())
 	{
@@ -45,12 +45,12 @@ void ForgotIdPwDialog::slotFind()
 
 	}
 }
-void ForgotIdPwDialog::slotIdshow()
+void ForgotIdPwDialog::idshow()
 {
 	ui.questionLabel->hide();
 	ui.questionLineEdit->hide();
 }
-void ForgotIdPwDialog::slotPwshow()
+void ForgotIdPwDialog::pwshow()
 {
 	ui.questionLabel->show();
 	ui.questionLineEdit->show();

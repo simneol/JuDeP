@@ -50,20 +50,25 @@ QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 	return query;
 }
 
-QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > data)
+QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<QString> record)
 {
-	QString totalStmt="INSERT INTO "+table+"_table (";
-	for(int i=0;i<data.length();i++)
+	if(column.length()!=record.length())
 	{
-		totalStmt+=data[i].first;
-		if(i<data.length()-1)
+		qDebug()<<"column cannot match valid record !";
+		return NULL;
+	}
+	QString totalStmt="INSERT INTO "+table+"_table (";
+	for(int i=0;i<column.length();i++)
+	{
+		totalStmt+=column[i];
+		if(i<column.length()-1)
 			totalStmt+=", ";
 	}
 	totalStmt+=") VALUES (\'";
-	for(int i=0;i<data.length();i++)
+	for(int i=0;i<record.length();i++)
 	{
-		totalStmt+=data[i].second;
-		if(i<data.length()-1)
+		totalStmt+=record[i];
+		if(i<record.length()-1)
 			totalStmt+="\', \'";
 	}
 	totalStmt+="\')";
@@ -78,24 +83,30 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > 
 	return query;
 }
 
-QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QPair<QString,QString> >data)
+QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QString> column,QVector<QString> record,QString primaryKey,QString conditionKey)
 {
-	for(int i=0;i<data.size();i++)
-		if(!checkValid(data[i].first) || !checkValid(data[i].second))
+	//record2개이상이면 애러
+	if(column.length()!=record.length())
+	{
+		qDebug()<<"column cannot match valid record !";
+		return NULL;
+	}
+	for(int i=0;i<record.size();i++)
+		if(!checkValid(record[i]))
 			return NULL;
 	QString totalStmt="UPDATE "+table+"_table SET ";
-	for(int i=1;i<data.length();i++)
+	for(int i=0;i<column.length();i++)
 	{
-		totalStmt+=data[i].first;
+		totalStmt+=column[i];
 		totalStmt+=" = ";
-		totalStmt+="\'"+data[i].second+"\'";
-		if(i<data.length()-1)
+		totalStmt+="\'"+record[i]+"\'";
+		if(i<column.length()-1)
 			totalStmt+=", ";
 	}
 	totalStmt+=" WHERE ";
-	totalStmt+=data[0].first;
+	totalStmt+=primaryKey;
 	totalStmt+=" = ";
-	totalStmt+="\'"+data[1].second+"\'";
+	totalStmt+="\'"+conditionKey+"\'";
 	qDebug().noquote()<<totalStmt;
 	query->prepare(totalStmt);
 	if(!query->exec())

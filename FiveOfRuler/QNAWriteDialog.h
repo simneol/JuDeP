@@ -20,12 +20,8 @@ private:
 
 signals:
 	private slots:
-<<<<<<< HEAD
 		void write();
 		void closeQNA();
-=======
-		void slotWrite();
->>>>>>> e29bd90e46d2066a7cbe797db1c35e67b25ac23e
 };
 
 #endif // QNAWRITEDIALOG_H

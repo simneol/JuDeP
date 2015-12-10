@@ -1,8 +1,6 @@
 #include "LoginManager.h"
 #include "WindowManager.h"
 #include "FiveOfRulerDB.h"
-#include "QuestionReplyDialog.h"
-#include "UserInstanceManager.h"
 
 #include <QtSql/QSqlQuery>
 #include <QtWidgets/QMessageBox>
@@ -15,34 +13,26 @@ LoginManager::LoginManager()
 
 LoginManager::~LoginManager(){}
 
-void LoginManager::slotLogin(QString id, QString pw, bool isUser)
+void LoginManager::login(QString id, QString pw, bool isUser)
 {
 	QSqlQuery *query;
 	if(isUser)
-		query=FiveOfRulerDB::select("user","id", id);
+		query=FiveOfRulerDB::select("user","id",id);
 	else
 		query=FiveOfRulerDB::select("technician","id",id);
 
-	if(query != NULL 
-		&& query->value(1).toString() == pw
-		&& pw.length() > 0)
+	if(query!=NULL&&query->value(1).toString()==pw&&pw.length()>0)
 	{
 		qDebug("password correct");
 		if(isUser)
 		{
 			User *user=new User();
 			user->setId(id);
-			InstanceOfUserManager.setInfo(user);
-
-			WindowManager::slotOpenWindow("UserWindow",(Info*)user);
+			WindowManager::openWindow("UserWindow",(Info*)user);
 		}
-		// Technician User
-		else if(isUser == false)
-		{
-
-			WindowManager::slotOpenWindow("TechnicianWindow");
-		}
-		WindowManager::slotCloseWindow("LoginWindow");
+		else
+			WindowManager::openWindow("TechnicianWindow");
+		WindowManager::closeWindow("LoginWindow");
 	}
 	else
 	{
@@ -51,7 +41,7 @@ void LoginManager::slotLogin(QString id, QString pw, bool isUser)
 		msgBox.exec();
 	}
 }
-void LoginManager::slotOpenRegisterDialog()
+void LoginManager::openRegisterDialog()
 {
 	if(registerDialog==NULL)
 	{
@@ -61,7 +51,7 @@ void LoginManager::slotOpenRegisterDialog()
 	else
 		registerDialog->hasFocus();
 }
-void LoginManager::slotOpenForgotIdPwDialog()
+void LoginManager::openForgotIdPwDialog()
 {
 	if(forgotIdPwDialog==NULL)
 	{

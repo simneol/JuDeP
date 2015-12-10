@@ -1,6 +1,6 @@
 #include "WindowManager.h"
 #include "FiveOfRulerDB.h"
-
+// This is test branch !
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QSplashScreen>
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 	}
-	WindowManager::slotOpenWindow("LoginWindow");
+	WindowManager::openWindow("LoginWindow");
 	delete splash;
 
 	return app.exec();
