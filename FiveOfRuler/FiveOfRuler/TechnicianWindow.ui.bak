@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TechnicianWindow</class>
+ <widget class="QMainWindow" name="TechnicianWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>357</width>
+    <height>389</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>30</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Technician</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RegiterProduct">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RegiterProduct</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RepairStatusrenew">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>230</y>
+      <width>151</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RepairStatus Renew</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="message">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>110</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Message</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="productSearch">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>151</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Product Search</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="QnA">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>QnA</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logout">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>290</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Logout</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Withdrawal">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Withdrawal</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="compoSearch">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>260</y>
+      <width>151</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Component Search</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>357</width>
+<<<<<<< HEAD
+     <height>38</height>
+=======
+     <height>21</height>
+>>>>>>> windowmanager
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Menu">
+    <property name="title">
+     <string>&amp;Menu</string>
+    </property>
+    <addaction name="action_Logout"/>
+   </widget>
+   <addaction name="menu_Menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Logout">
+   <property name="text">
+    <string>&amp;Logout</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
