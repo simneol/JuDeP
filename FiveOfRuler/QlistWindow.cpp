@@ -1,41 +1,18 @@
 #include "QlistWindow.h"
 #include "FiveOfRulerDB.h"
+#include <Windows.h>
 
+#include "WindowManager.h"
+
+// 리스트의 생성자
 QlistWindow::QlistWindow(QWidget *parent, User *user) :
 QDialog(parent)
 {
 	ui.setupUi(this);
-	QStandardItemModel *model1 = new QStandardItemModel(2, 3, this); //2 Rows and 3 Columns
 
-	//model = new QStringListModel(this);
-	//QStringList list;
+	userStatic = user;
 
-	QSqlQuery *query = FiveOfRulerDB::select("qna", "writer", user->getId());
-
-	//model->setStringList(list);
-
-	/*while (query->next())
-	{
-		list << query->value(3).toString();
-	}
-	model->setStringList(list);*/
-
-	model1->setHorizontalHeaderItem(0, new QStandardItem(QString("No")));
-	model1->setHorizontalHeaderItem(1, new QStandardItem(QString("Writer")));
-	model1->setHorizontalHeaderItem(2, new QStandardItem(QString("Title")));
-
-	for (int i = 0; query->next(); i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			//list << query->value(j).toString()
-
-			model1->setItem(i, j, new QStandardItem(QString(query->value(j).toString())));
-		}
-	}
-
-
-	ui.tableView->setModel(model1);
+	showData();
 
 	connectSignal(user);
 }
@@ -44,28 +21,75 @@ QlistWindow::~QlistWindow()
 {
 }
 
+// 시그널을 구분하는 함수
 void QlistWindow::connectSignal(User *user)
 {
-	QSqlQuery *query = FiveOfRulerDB::select("qna", "writer", user->getId());
-	QStandardItemModel *model1 = new QStandardItemModel(2, 3, this); //2 Rows and 3 Columns
-
-	for (int i = 0; query->next(); i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			//list << query->value(j).toString()
-
-			model1->setItem(i, j, new QStandardItem(QString(query->value(0).toString())));
-		}
-	}
-	ui.tableView->setModel(model1);
-
-	connect(ui.tableView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
+	connect(ui.listView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
+	connect(ui.QnA1, SIGNAL(clicked()), this, SLOT(openQNAWriteDialog()));
+	connect(ui.close, SIGNAL(clicked()), this, SLOT(closeWindow()));
+	connect(ui.NewWindowLable, SIGNAL(clicked()), this, SLOT(newWindow()));
 }
 
+// 리스트에나온 QNA를 눌렀을 때 내용을 다이어로그로 보여주는 함수
 void QlistWindow::onClickListItem(const QModelIndex &index)
 {
 	QSqlQuery *query1 = FiveOfRulerDB::select("qna", "postIndex", index.data().toString());
 
 	QMessageBox::information(this, "QNA", "QNA: \n" + query1->value(3).toString());
+}
+
+// 글쓰기 버튼을 눌렀을시 QNA창을 열어주는 실행하는 함수
+void QlistWindow::openQNAWriteDialog()
+{
+	qnaWriteDialog = new QNAWriteDialog(0, userStatic);
+	qnaWriteDialog->show();
+}
+
+// 닫기버튼을 눌렀을시 실행하는 함수
+void QlistWindow::closeWindow()
+{
+	this->close();
+
+	delete this;
+}
+
+// 새로고침하는 함수
+void QlistWindow::newWindow()
+{
+	showData();
+}
+
+// 역순으로 데이터를 출력하는 함수
+void QlistWindow::showData()
+{
+	model = new QStringListModel(this);
+
+	int i;
+
+	QStringList list;
+	QString str;
+
+	QSqlQuery *query = FiveOfRulerDB::select("qna", "writer", userStatic->getId());
+
+	qnaWriteDialog = NULL;
+
+	while (query->next());
+
+	while (query->previous())
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (!j)
+				str = query->value(j).toString();
+			else
+				str += query->value(j).toString();
+
+			if (j != 2)
+				str += "  \tl ";
+		}
+		list << str;
+	}
+	model->setStringList(list);
+
+	ui.listView->setModel(model);
 }

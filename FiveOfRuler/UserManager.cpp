@@ -27,7 +27,6 @@ void UserManager::openQNAWriteDialog()
 
 void UserManager::openQNASeeDialog()
 {
-	if (qnaSeeDialog == NULL)
-		qnaSeeDialog = new QlistWindow(0, user);
+	qnaSeeDialog = new QlistWindow(0, user);
 	qnaSeeDialog->show();
 }
