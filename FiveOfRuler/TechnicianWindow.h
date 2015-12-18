@@ -2,6 +2,9 @@
 #define TECHNICIANWINDOW_H
 
 #include <QtWidgets/QMainWindow>
+#include <map>
+#include <QTCore/QMap>
+#include <QTCore/QString>
 
 #include "ui_TechnicianWindow.h"
 #include "QuestionReplyDialog.h"
@@ -13,9 +16,11 @@ class TechnicianWindow : public QMainWindow
 public:
 	TechnicianWindow(QWidget *parent = 0);
 	~TechnicianWindow();
-	QuestionReplyDialog *targetQuestionReplyDialog;
+	void CloseAllDialog();
+	void OpenDialog(QString str);
 private:
 	Ui::TechnicianWindow ui;
+	QMap<QString, QDialog*> dialogs;
 
 signals:
 	private slots:

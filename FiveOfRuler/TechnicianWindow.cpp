@@ -1,13 +1,11 @@
 #include "TechnicianWindow.h"
 #include "WindowManager.h"
-
 #include <QtCore/QDebug>
 
 TechnicianWindow::TechnicianWindow(QWidget *parent)
 	: QMainWindow(parent)
 {		
 	ui.setupUi(this);
-	targetQuestionReplyDialog = NULL;
 
 	connect(ui.action_Logout,
 		SIGNAL(triggered()),
@@ -30,16 +28,43 @@ void TechnicianWindow::slotLogout()
 
 void TechnicianWindow::slotOpenQuestionReplyWindow()
 {
-	if(targetQuestionReplyDialog == NULL)
+	OpenDialog("QuestionReply");
+}
+
+#pragma region DialogControll
+
+void TechnicianWindow::OpenDialog(QString str)
+{
+	QDialog *target = NULL;
+	target = dialogs.value(str);
+	if(target == NULL)
 	{
-		targetQuestionReplyDialog = new QuestionReplyDialog();
-		targetQuestionReplyDialog->show();
-		targetQuestionReplyDialog->hasFocus();
+		qDebug("Open-New");
+		if(str == "QuestionReply")
+		{
+			target = new QuestionReplyDialog();
+		}
+		dialogs.insert(str, target);
+		target->show();
+		target->hasFocus();
 	}
 	else
 	{
-		targetQuestionReplyDialog->show();
-		targetQuestionReplyDialog->hasFocus();
+		qDebug("Open-AlreadyHave");
+		target->show();
+		target->hasFocus();
+	}
+}
+
+void TechnicianWindow::CloseAllDialog()
+{
+	qDebug("Close-");
+	foreach (QDialog* dialog, dialogs)
+	{
+		dialog->hide();
 	}
 
+	this->hasFocus();
 }
+
+#pragma endregion
