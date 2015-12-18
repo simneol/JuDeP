@@ -44,14 +44,12 @@ void QuestionReplyDialog::slotSubmit()
 	column.push_back("email");
 	column.push_back("question");
 	column.push_back("answer");
-
 	QVector<QString> record;
 	record.push_back(ui.idLineEdit->text());
 	record.push_back(ui.pwLineEdit->text());
 	record.push_back(ui.emailLineEdit->text());
 	record.push_back(QString::number((ui.questionComboBox->currentIndex())));
 	record.push_back(ui.answerLineEdit->text());
-
 	QMessageBox msgBox;
 	if(FiveOfRulerDB::insert("user",column,record)!=NULL)
 		msgBox.setText(" Registration Complete ! ");

@@ -1,6 +1,7 @@
 #include "LoginManager.h"
 #include "WindowManager.h"
 #include "FiveOfRulerDB.h"
+#include "QuestionReplyDialog.h"
 
 #include <QtSql/QSqlQuery>
 #include <QtWidgets/QMessageBox>
