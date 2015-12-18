@@ -23,8 +23,8 @@ TechnicianWindow::~TechnicianWindow(){qDebug("~TechnicianWindow()");}
 
 void TechnicianWindow::slotLogout()
 {
-	WindowManager::openWindow("LoginWindow");
-	WindowManager::closeWindow("TechnicianWindow");
+	WindowManager::slotOpenWindow("LoginWindow");
+	WindowManager::slotCloseWindow("TechnicianWindow");
 }
 
 void TechnicianWindow::slotOpenQuestionReplyWindow()
