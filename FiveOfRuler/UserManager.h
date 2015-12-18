@@ -6,7 +6,9 @@
 #include "QNAWriteDialog.h"
 #include "QNASeeDialog.h"
 #include "QlistWindow.h"
+#include "RequestProduct.h"
 #include "User.h"
+#include "RequestShow.h"
 
 class UserManager : public QObject
 {
@@ -19,11 +21,15 @@ public:
 private:
 	QNAWriteDialog *qnaWriteDialog;
 	QlistWindow *qnaSeeDialog;
+	RequestProduct *requestDialog;
+	RequestShow *requestShowDialog;
 	User *user;
 
 	public slots:
 		void logout();
 		void openQNAWriteDialog();
 		void openQNASeeDialog();
+		void openRequestProduct();
+		void openRequestShow();
 };
 #endif

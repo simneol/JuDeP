@@ -35,7 +35,8 @@ void QlistWindow::onClickListItem(const QModelIndex &index)
 {
 	QSqlQuery *query1 = FiveOfRulerDB::select("qna", "postIndex", index.data().toString());
 
-	QMessageBox::information(this, "QNA", "QNA: \n" + query1->value(3).toString());
+	QMessageBox::information(this, "QNA", "QNA: \n" + query1->value(3).toString()
+		+ "\n\n" + "Re: \n");
 }
 
 // 글쓰기 버튼을 눌렀을시 QNA창을 열어주는 실행하는 함수

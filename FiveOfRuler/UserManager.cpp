@@ -30,3 +30,15 @@ void UserManager::openQNASeeDialog()
 	qnaSeeDialog = new QlistWindow(0, user);
 	qnaSeeDialog->show();
 }
+
+void UserManager::openRequestProduct()
+{
+	requestDialog = new RequestProduct(0, user);
+	requestDialog->show();
+}
+
+void UserManager::openRequestShow()
+{
+	requestShowDialog = new RequestShow(0, user);
+	requestShowDialog->show();
+}
