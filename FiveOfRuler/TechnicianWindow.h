@@ -8,6 +8,8 @@
 
 #include "ui_TechnicianWindow.h"
 #include "QuestionReplyDialog.h"
+#include "TechQNASelectDialog.h"
+
 
 class TechnicianWindow : public QMainWindow
 {

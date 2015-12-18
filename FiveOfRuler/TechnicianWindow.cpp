@@ -1,4 +1,5 @@
 #include "TechnicianWindow.h"
+
 #include "WindowManager.h"
 #include <QtCore/QDebug>
 
@@ -28,7 +29,7 @@ void TechnicianWindow::slotLogout()
 
 void TechnicianWindow::slotOpenQuestionReplyWindow()
 {
-	OpenDialog("QuestionReply");
+	OpenDialog("TechQNASelectDialog");
 }
 
 #pragma region DialogControll
@@ -43,6 +44,10 @@ void TechnicianWindow::OpenDialog(QString str)
 		if(str == "QuestionReply")
 		{
 			target = new QuestionReplyDialog();
+		}
+		else if(str == "TechQNASelectDialog")
+		{
+			target = new TechQNASelectDialog();
 		}
 		dialogs.insert(str, target);
 		target->show();
