@@ -34,13 +34,20 @@ void RequestShow::onClickListItem(const QModelIndex &index)
 {
 	QSqlQuery *query1 = FiveOfRulerDB::select("product", "postIndex", index.data().toString());
 
+	if (query1->value(9).toString() == "1")
+		care = "Not set";
+	else if (query1->value(0).toString() == "0")
+		care = "Ongoing";
+	else
+		care = "Finish";
+
 	if(query1->value(5).toString() == "-1")
 		price = "Not decide";
 	else
 		price = query1->value(5).toString();
 
 	QMessageBox::information(this, "Request Product", "Title : " + query1->value(6).toString()
-		+ "\n" + "Care : " + query1->value(9).toString()
+		+ "\n" + "Care : " + care
 		+ "\n" + "Symptom : " + query1->value(8).toString()
 		+ "\n" + "Price : " + price
 		+ "\n" + "Etc: \n" + query1->value(11).toString()

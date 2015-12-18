@@ -33,7 +33,7 @@ private:
 
 	User *userStatic;
 
-	QString price;
+	QString care, price;
 
 	void connectSignal(User *user);
 	void showData();
