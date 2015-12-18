@@ -1,4 +1,4 @@
-#include "FiveOfRulerDB.h"
+ï»¿#include "FiveOfRulerDB.h"
 #include "DatabaseInfo.h"
 
 QSqlDatabase FiveOfRulerDB::db;
@@ -28,7 +28,7 @@ bool FiveOfRulerDB::open()
 
 bool FiveOfRulerDB::checkValid(QString str)
 {
-	/* SQL Injection ¿¹¹æÀ» À§ÇØ, id À¯È¿¼º °Ë»ç */
+	/* SQL Injection Â¿Â¹Â¹Ã¦Ã€Â» Ã€Â§Ã‡Ã˜, id Ã€Â¯ÃˆÂ¿Â¼Âº Â°Ã‹Â»Ã§ */
 	if(str.contains("'")||str.contains("--")||str.contains("/")||str.contains(";")||str.contains("*"))
 	{
 		qDebug("String includes something wrong character!");
@@ -50,25 +50,20 @@ QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 	return query;
 }
 
-QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<QString> record)
+QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > data)
 {
-	if(column.length()!=record.length())
-	{
-		qDebug()<<"column cannot match valid record !";
-		return NULL;
-	}
 	QString totalStmt="INSERT INTO "+table+"_table (";
-	for(int i=0;i<column.length();i++)
+	for(int i=0;i<data.length();i++)
 	{
-		totalStmt+=column[i];
-		if(i<column.length()-1)
+		totalStmt+=data[i].first;
+		if(i<data.length()-1)
 			totalStmt+=", ";
 	}
 	totalStmt+=") VALUES (\'";
-	for(int i=0;i<record.length();i++)
+	for(int i=0;i<data.length();i++)
 	{
-		totalStmt+=record[i];
-		if(i<record.length()-1)
+		totalStmt+=data[i].second;
+		if(i<data.length()-1)
 			totalStmt+="\', \'";
 	}
 	totalStmt+="\')";
@@ -83,30 +78,24 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QString> column,QVector<Q
 	return query;
 }
 
-QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QString> column,QVector<QString> record,QString primaryKey,QString conditionKey)
+QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QPair<QString,QString> >data)
 {
-	//record2°³ÀÌ»óÀÌ¸é ¾Ö·¯
-	if(column.length()!=record.length())
-	{
-		qDebug()<<"column cannot match valid record !";
-		return NULL;
-	}
-	for(int i=0;i<record.size();i++)
-		if(!checkValid(record[i]))
+	for(int i=0;i<data.size();i++)
+		if(!checkValid(data[i].first) || !checkValid(data[i].second))
 			return NULL;
 	QString totalStmt="UPDATE "+table+"_table SET ";
-	for(int i=0;i<column.length();i++)
+	for(int i=1;i<data.length();i++)
 	{
-		totalStmt+=column[i];
+		totalStmt+=data[i].first;
 		totalStmt+=" = ";
-		totalStmt+="\'"+record[i]+"\'";
-		if(i<column.length()-1)
+		totalStmt+="\'"+data[i].second+"\'";
+		if(i<data.length()-1)
 			totalStmt+=", ";
 	}
 	totalStmt+=" WHERE ";
-	totalStmt+=primaryKey;
+	totalStmt+=data[0].first;
 	totalStmt+=" = ";
-	totalStmt+="\'"+conditionKey+"\'";
+	totalStmt+="\'"+data[1].second+"\'";
 	qDebug().noquote()<<totalStmt;
 	query->prepare(totalStmt);
 	if(!query->exec())

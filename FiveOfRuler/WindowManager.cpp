@@ -8,7 +8,7 @@ WindowManager::WindowManager(){qDebug("WindowManager()");}
 
 WindowManager::~WindowManager(){qDebug("~WindowManager()");}
 
-void WindowManager::openWindow(QString windowName,Info* info)
+void WindowManager::slotOpenWindow(QString windowName,Info* info)
 {
 	if(windowName.compare("LoginWindow")==0)
 	{
@@ -30,7 +30,7 @@ void WindowManager::openWindow(QString windowName,Info* info)
 	}
 }
 
-void WindowManager::closeWindow(QString windowName)
+void WindowManager::slotCloseWindow(QString windowName)
 {
 	if(windowName.compare("LoginWindow")==0)
 	{

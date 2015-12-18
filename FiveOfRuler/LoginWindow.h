@@ -1,4 +1,4 @@
-#ifndef LOGINWINDOW_H
+Ôªø#ifndef LOGINWINDOW_H
 #define LOGINWINDOW_H
 
 #include <QtWidgets/QMainWindow>
@@ -14,12 +14,12 @@ public:
 	~LoginWindow();
 
 private:
-	Ui::LoginWindow ui;	// UI∆ƒ¿œ
+	Ui::LoginWindow ui;	// UI√Ü√Ñ√Ä√è
 	LoginManager loginManager;
 
 signals:
-	void LoginSignal(QString id, QString pw, bool isUser);
+	void slotLoginSignal(QString id, QString pw, bool isUser);
 	private slots:
-		void emitLoginSignal();
+		void slotEmitLoginSignal();
 };
 #endif // LOGINWINDOW_H
