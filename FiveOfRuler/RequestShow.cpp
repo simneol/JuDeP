@@ -98,15 +98,6 @@ void RequestShow::showData()
 
 		str += query->value(6).toString();
 
-		/*str += " l ";
-		str += query->value(10).toString();
-		str += " l ";
-
-		if (query->value(5).toString() == "-1")
-			str += "Not decide";
-		else
-			str += query->value(5).toString();*/
-
 		list << str;
 	}
 	model->setStringList(list);

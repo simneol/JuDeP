@@ -24,7 +24,7 @@ void RequestProduct::write()
 	QMessageBox msgbox;
 
 	// 제목이나 내용중 하나를 빠뜨리고 썼을때 실행
-	if (ui.Requesthead->text() == NULL || ui.Requestcontent->toPlainText() == NULL)
+	if (ui.Requesthead->text() == NULL || ui.Requestcontent->toPlainText() == NULL || ui.RequestType == NULL || ui.RequestSymptom == NULL)
 	{
 		msgbox.setText("Error:\n Please write title and contents !");
 		msgbox.exec();

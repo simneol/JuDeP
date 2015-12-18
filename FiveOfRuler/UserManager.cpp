@@ -1,4 +1,5 @@
 #include "UserManager.h"
+#include "FiveOfRulerDB.h"
 #include "WindowManager.h"
 
 #include <QtCore/QDebug>
@@ -20,8 +21,7 @@ void UserManager::logout()
 
 void UserManager::openQNAWriteDialog()
 {
-	if(qnaWriteDialog==NULL)
-		qnaWriteDialog=new QNAWriteDialog(0,user);
+	qnaWriteDialog=new QNAWriteDialog(0,user);
 	qnaWriteDialog->show();
 }
 
@@ -31,14 +31,16 @@ void UserManager::openQNASeeDialog()
 	qnaSeeDialog->show();
 }
 
-void UserManager::openRequestProduct()
+void UserManager::openRequestDialog()
 {
 	requestDialog = new RequestProduct(0, user);
 	requestDialog->show();
 }
 
-void UserManager::openRequestShow()
+void UserManager::openRequestShowDialog()
 {
-	requestShowDialog = new RequestShow(0, user);
-	requestShowDialog->show();
+	reauestShowDialog = new RequestShow(0, user);
+	reauestShowDialog->show();
 }
+
+UserWindow::~UserWindow(){ qDebug("~UserWindow()"); }
