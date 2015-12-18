@@ -12,13 +12,13 @@ RegisterDialog::RegisterDialog(QWidget *parent)
 	ui.setupUi(this);
 	is_idDuplicated=true;
 
-	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(signup()));
-	connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(checkIdDuplication()));
+	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(slotSignup()));
+	connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(slotCheckIdDuplication()));
 }
 
 RegisterDialog::~RegisterDialog(){qDebug("~RegisterDialog()");}
 
-void RegisterDialog::signup()
+void RegisterDialog::slotSignup()
 {
 	if(is_idDuplicated)
 	{
@@ -27,22 +27,15 @@ void RegisterDialog::signup()
 		msgbox.exec();
 		return;
 	}
-	QVector<QString> column;
-	column.push_back("id");
-	column.push_back("pw");
-	column.push_back("email");
-	column.push_back("question");
-	column.push_back("answer");
-
-	QVector<QString> record;
-	record.push_back(ui.idLineEdit->text());
-	record.push_back(ui.pwLineEdit->text());
-	record.push_back(ui.emailLineEdit->text());
-	record.push_back(QString::number((ui.questionComboBox->currentIndex())));
-	record.push_back(ui.answerLineEdit->text());
+	QVector<QPair<QString,QString> > data;
+	data.push_back(qMakePair<QString,QString>("id",ui.idLineEdit->text()));
+	data.push_back(qMakePair<QString,QString>("pw",ui.pwLineEdit->text()));
+	data.push_back(qMakePair<QString,QString>("email",ui.emailLineEdit->text()));
+	data.push_back(qMakePair<QString,QString>("question",QString::number((ui.questionComboBox->currentIndex()))));
+	data.push_back(qMakePair<QString,QString>("answer",ui.answerLineEdit->text()));
 
 	QMessageBox msgBox;
-	if(FiveOfRulerDB::insert("user",column,record)!=NULL)
+	if(FiveOfRulerDB::insert("user",data)!=NULL)
 		msgBox.setText(" Registration Complete ! ");
 	else
 		msgBox.setText(" Registration Fail ! ");
@@ -50,7 +43,7 @@ void RegisterDialog::signup()
 	this->close();
 }
 
-void RegisterDialog::checkIdDuplication()
+void RegisterDialog::slotCheckIdDuplication()
 {
 	QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
 	if(query->value(0).toString().compare(ui.idLineEdit->text())!=0)

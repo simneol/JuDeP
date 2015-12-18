@@ -18,8 +18,8 @@ private:
 	bool is_idDuplicated;
 signals:
 	private slots:
-		void signup();
-		void checkIdDuplication();
+		void slotSignup();
+		void slotCheckIdDuplication();
 };
 
 #endif // REGISTERDIALOG_H
