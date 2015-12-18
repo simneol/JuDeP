@@ -15,8 +15,8 @@ User* UserManager::getUser(){return user;}
 
 void UserManager::logout()
 {
-	WindowManager::openWindow("LoginWindow");
-	WindowManager::closeWindow("UserWindow");
+	WindowManager::slotOpenWindow("LoginWindow");
+	WindowManager::slotCloseWindow("UserWindow");
 }
 
 void UserManager::openQNAWriteDialog()
