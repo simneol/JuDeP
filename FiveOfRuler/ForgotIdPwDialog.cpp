@@ -10,7 +10,7 @@ ForgotIdPwDialog::ForgotIdPwDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	slotIdshow();
+	//slotIdshow();
 	connect(ui.radio_Id,SIGNAL(clicked()),this,SLOT(slotIdshow()));
 	connect(ui.radio_Pw,SIGNAL(clicked()),this,SLOT(slotPwshow()));
 	connect(ui.btn_Find,SIGNAL(clicked()),this,SLOT(slotFind()));
