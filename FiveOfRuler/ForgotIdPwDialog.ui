@@ -45,14 +45,14 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QRadioButton" name="userButton">
+         <widget class="QRadioButton" name="btn_User">
           <property name="text">
            <string>User</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="technicianButton">
+         <widget class="QRadioButton" name="btn_Technician">
           <property name="text">
            <string>Technician</string>
           </property>
@@ -71,31 +71,31 @@
        </property>
        <layout class="QFormLayout" name="formLayout">
         <item row="0" column="0">
-         <widget class="QLabel" name="emailLabel">
+         <widget class="QLabel" name="label_Email">
           <property name="text">
            <string>E-mail</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="emailLineEdit"/>
+         <widget class="QLineEdit" name="lineEdit_Email"/>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="questionLabel">
+         <widget class="QLabel" name="label_Question">
           <property name="text">
            <string>Question</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="questionLineEdit"/>
+         <widget class="QLineEdit" name="lineEdit_Question"/>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="findButton">
+     <widget class="QPushButton" name="btn_Find">
       <property name="text">
        <string>Find my ID/PW</string>
       </property>
@@ -114,7 +114,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="QRadioButton" name="idRadioButton">
+     <widget class="QRadioButton" name="radio_Id">
       <property name="text">
        <string>ID</string>
       </property>
@@ -124,7 +124,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="pwRadioButton">
+     <widget class="QRadioButton" name="radio_Pw">
       <property name="text">
        <string>PW</string>
       </property>

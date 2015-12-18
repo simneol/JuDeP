@@ -10,21 +10,21 @@ ForgotIdPwDialog::ForgotIdPwDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 	slotIdshow();
-	connect(ui.idRadioButton,SIGNAL(clicked()),this,SLOT(slotIdshow()));
-	connect(ui.pwRadioButton,SIGNAL(clicked()),this,SLOT(slotPwshow()));
-	connect(ui.findButton,SIGNAL(clicked()),this,SLOT(slotFind()));
+	connect(ui.radio_Id,SIGNAL(clicked()),this,SLOT(slotIdshow()));
+	connect(ui.radio_Pw,SIGNAL(clicked()),this,SLOT(slotPwshow()));
+	connect(ui.btn_Find,SIGNAL(clicked()),this,SLOT(slotFind()));
 }
 
 ForgotIdPwDialog::~ForgotIdPwDialog(){qDebug("~ForgotIdPwDialog()");}
 
 void ForgotIdPwDialog::slotFind()
 {
-	if(ui.idRadioButton->isChecked())
+	if(ui.radio_Id->isChecked())
 	{
 		QSqlQuery *query;
-		if(ui.userButton->isChecked())
+		if(ui.btn_User->isChecked())
 		{
-			query=FiveOfRulerDB::select("user","email",ui.emailLineEdit->text());
+			query=FiveOfRulerDB::select("user","email",ui.lineEdit_Email->text());
 			QMessageBox msgbox;
 			msgbox.setText("Your ID : "+query->value(0).toString());
 			msgbox.exec();
@@ -32,7 +32,7 @@ void ForgotIdPwDialog::slotFind()
 		}
 		else
 		{
-			query=FiveOfRulerDB::select("technician","email",ui.emailLineEdit->text());
+			query=FiveOfRulerDB::select("technician","email",ui.lineEdit_Email->text());
 
 			QMessageBox msgbox;
 			msgbox.setText("Your ID : "+query->value(0).toString());
@@ -47,11 +47,11 @@ void ForgotIdPwDialog::slotFind()
 }
 void ForgotIdPwDialog::slotIdshow()
 {
-	ui.questionLabel->hide();
-	ui.questionLineEdit->hide();
+	ui.label_Question->hide();
+	ui.lineEdit_Question->hide();
 }
 void ForgotIdPwDialog::slotPwshow()
 {
-	ui.questionLabel->show();
-	ui.questionLineEdit->show();
+	ui.label_Question->show();
+	ui.lineEdit_Question->show();
 }

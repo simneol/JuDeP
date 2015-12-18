@@ -10,7 +10,6 @@ UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	ui.setupUi(this);
 	userManager=new UserManager(userInfo);
 	connect(ui.action_Logout,SIGNAL(triggered()),userManager,SLOT(logout()));
-	connect(ui.btn_Logout,SIGNAL(clicked()),userManager,SLOT(logout()));
 	connect(ui.btn_QnA,SIGNAL(clicked()),userManager,SLOT(openQNAWriteDialog()));
 }
 
