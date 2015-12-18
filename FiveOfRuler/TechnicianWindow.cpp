@@ -6,7 +6,7 @@ TechnicianWindow::TechnicianWindow(QWidget *parent)
 	: QMainWindow(parent)
 {		
 	ui.setupUi(this);
-
+	
 	connect(ui.action_Logout,
 		SIGNAL(triggered()),
 		this,
@@ -54,6 +54,8 @@ void TechnicianWindow::OpenDialog(QString str)
 		target->show();
 		target->hasFocus();
 	}
+
+	this->hide();
 }
 
 void TechnicianWindow::CloseAllDialog()
@@ -66,5 +68,4 @@ void TechnicianWindow::CloseAllDialog()
 
 	this->hasFocus();
 }
-
 #pragma endregion
