@@ -4,6 +4,7 @@
 #include "LoginWindow.h"
 #include "UserWindow.h"
 #include "TechnicianWindow.h"
+#include "QNAWriteDialog.h"
 
 #include <QtCore/QObject>
 #include <QtWidgets/QMainWindow>
@@ -18,8 +19,8 @@ private:
 public:
 	WindowManager();
 	~WindowManager();
-	static void slotOpenWindow(QString windowName,Info* info=NULL);
-	static void slotCloseWindow(QString windowName);
+	static void openWindow(QString windowName,Info* info=NULL);
+	static void closeWindow(QString windowName);
 signals:
 	private slots:
 };

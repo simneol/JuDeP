@@ -13,20 +13,26 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="btn_sendcansel">
+  <widget class="QScrollBar" name="scroll">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>300</y>
-     <width>156</width>
-     <height>23</height>
+     <x>330</x>
+     <y>90</y>
+     <width>20</width>
+     <height>191</height>
     </rect>
    </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_QnA">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -39,7 +45,7 @@
     <string>QnA</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="textEdit_title">
+  <widget class="QLineEdit" name="head">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -49,38 +55,41 @@
     </rect>
    </property>
   </widget>
-  <widget class="QScrollArea" name="scrollArea">
+  <widget class="QTextEdit" name="content">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>100</y>
-     <width>291</width>
-     <height>181</height>
+     <y>90</y>
+     <width>271</width>
+     <height>191</height>
     </rect>
    </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
+  </widget>
+  <widget class="QPushButton" name="sendconfirm">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>300</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
    </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>289</width>
-      <height>179</height>
-     </rect>
-    </property>
-    <widget class="QTextEdit" name="textEdit_Write">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>291</width>
-       <height>181</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
+   <property name="text">
+    <string>확인</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="sendcansel">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>300</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>취소</string>
+   </property>
   </widget>
  </widget>
  <resources/>

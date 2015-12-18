@@ -6,20 +6,39 @@ UserManager::UserManager(Info* userInfo)
 {
 	user=(User*)userInfo;
 	qnaWriteDialog=NULL;
+	qnaSeeDialog = NULL;
 }
 UserManager::~UserManager(){qDebug("~UserManager");}
 
 User* UserManager::getUser(){return user;}
 
-void UserManager::slotLogout()
+void UserManager::logout()
 {
-	WindowManager::slotOpenWindow("LoginWindow");
-	WindowManager::slotCloseWindow("UserWindow");
+	WindowManager::openWindow("LoginWindow");
+	WindowManager::closeWindow("UserWindow");
 }
 
-void UserManager::slotOpenQNAWriteDialog()
+void UserManager::openQNAWriteDialog()
 {
 	if(qnaWriteDialog==NULL)
 		qnaWriteDialog=new QNAWriteDialog(0,user);
 	qnaWriteDialog->show();
+}
+
+void UserManager::openQNASeeDialog()
+{
+	qnaSeeDialog = new QlistWindow(0, user);
+	qnaSeeDialog->show();
+}
+
+void UserManager::openRequestProduct()
+{
+	requestDialog = new RequestProduct(0, user);
+	requestDialog->show();
+}
+
+void UserManager::openRequestShow()
+{
+	requestShowDialog = new RequestShow(0, user);
+	requestShowDialog->show();
 }

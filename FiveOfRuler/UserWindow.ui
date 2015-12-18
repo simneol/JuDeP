@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>460</width>
-    <height>324</height>
+    <width>357</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,7 +61,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label_User">
+   <widget class="QPushButton" name="RegiterProduct">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -71,10 +71,75 @@
      </rect>
     </property>
     <property name="text">
-     <string>User</string>
+     <string>RegiterProduct</string>
     </property>
    </widget>
-   <widget class="QDockWidget" name="User_RepairStatus">
+   <widget class="QPushButton" name="RepairStatus">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>230</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RepairStatus</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="message">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>110</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Message</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RequestRepair">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RequestRepair</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="QnA">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>QnA</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logout">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>260</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Logout</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Withdrawal">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -169,14 +234,27 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
+   <widget class="QPushButton" name="SeeQnA">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>140</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SeeQNA</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar_main">
+  <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>460</width>
-     <height>21</height>
+     <width>357</width>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">

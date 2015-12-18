@@ -9,6 +9,7 @@ ForgotIdPwDialog::ForgotIdPwDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+
 	slotIdshow();
 	connect(ui.radio_Id,SIGNAL(clicked()),this,SLOT(slotIdshow()));
 	connect(ui.radio_Pw,SIGNAL(clicked()),this,SLOT(slotPwshow()));
@@ -17,7 +18,7 @@ ForgotIdPwDialog::ForgotIdPwDialog(QWidget *parent)
 
 ForgotIdPwDialog::~ForgotIdPwDialog(){qDebug("~ForgotIdPwDialog()");}
 
-void ForgotIdPwDialog::slotFind()
+void ForgotIdPwDialog::find()
 {
 	if(ui.radio_Id->isChecked())
 	{
@@ -45,12 +46,12 @@ void ForgotIdPwDialog::slotFind()
 
 	}
 }
-void ForgotIdPwDialog::slotIdshow()
+void ForgotIdPwDialog::idshow()
 {
 	ui.label_Question->hide();
 	ui.lineEdit_Question->hide();
 }
-void ForgotIdPwDialog::slotPwshow()
+void ForgotIdPwDialog::pwshow()
 {
 	ui.label_Question->show();
 	ui.lineEdit_Question->show();

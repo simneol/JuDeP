@@ -10,21 +10,48 @@ QNAWriteDialog::QNAWriteDialog(QWidget *parent,User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
 	this->user=user;
-	connect(ui.btn_sendcansel,SIGNAL(accepted()),this,SLOT(slotWrite()));
+
+	connect(ui.sendconfirm, SIGNAL(clicked()), this, SLOT(write()));	// 확인하고
+	connect(ui.sendconfirm, SIGNAL(clicked()), this, SLOT(closeQNA()));	// 끈다양
+	connect(ui.sendcansel, SIGNAL(clicked()), this, SLOT(closeQNA()));	// 끈다양
 }
 
 QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
 
-void QNAWriteDialog::slotWrite()
+void QNAWriteDialog::write()
 {
-	QVector<QPair<QString,QString> > data;
-	data.push_back(qMakePair<QString,QString>("writer",user->getId()));
-	data.push_back(qMakePair<QString,QString>("title",ui.textEdit_title->text()));
-	data.push_back(qMakePair<QString,QString>("content",ui.textEdit_Write->toPlainText()));
-
-	QSqlQuery *query=FiveOfRulerDB::insert("qna",data);
+	QVector<QString> column,record;
 	QMessageBox msgbox;
-	msgbox.setText("Success !");
-	msgbox.exec();
+
+	// 제목이나 내용중 하나를 빠뜨리고 썼을때 실행
+	if (ui.head->text() == NULL || ui.content->toPlainText() == NULL)
+	{
+		msgbox.setText("Error:\n Please write title and contents !");
+		msgbox.exec();
+		this->close();
+	}
+	// 모든 빈 칸을 채웠을 때 실행
+	else
+	{
+		column.push_back("writer");
+		column.push_back("title");
+		column.push_back("content");
+
+		record.push_back(user->getId());
+		record.push_back(ui.head->text());
+		record.push_back(ui.content->toPlainText());
+
+		QSqlQuery *query = FiveOfRulerDB::insert("qna", column, record);
+
+		msgbox.setText("Success !");
+		msgbox.exec();
+		this->close();
+	}
+}
+
+void QNAWriteDialog::closeQNA()
+{
 	this->close();
+
+	delete this;
 }
