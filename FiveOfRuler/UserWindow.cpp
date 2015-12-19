@@ -5,6 +5,7 @@
 #include <QtCore/QDebug>
 
 
+// 시그널을 처리하는 생성자
 UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	: QMainWindow(parent)
 {
@@ -13,14 +14,14 @@ UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	userManager=new UserManager(userInfo);
 
 	showData();
-
+	
+	// 많은 시그널을 UserWindow 에서 처리한다.
 	connect(ui.action_Logout,SIGNAL(triggered()),userManager,SLOT(logout()));
 	connect(ui.logout,SIGNAL(clicked()),userManager,SLOT(logout()));
 	connect(ui.QnA,SIGNAL(clicked()),userManager,SLOT(openQNAWriteDialog()));
 	connect(ui.RegiterProduct, SIGNAL(clicked()), userManager, SLOT(openRequestDialog()));
 	connect(ui.SeeQnA, SIGNAL(clicked()), userManager, SLOT(openQNASeeDialog()));
-
-	connect(ui.RequestRepair, SIGNAL(clicked()), userManager, SLOT(openRequestShowDialog()));
+	connect(ui.RegisterProductInformation, SIGNAL(clicked()), userManager, SLOT(openRegisterProductInformation()));
 
 	connect(ui.listView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
 	connect(ui.NewWindowRequest, SIGNAL(clicked()), this, SLOT(newWindow()));
@@ -43,6 +44,7 @@ void UserWindow::onClickListItem(const QModelIndex &index)
 	else
 		price = query1->value(5).toString();
 
+	// Qna의 정보를 메시지 박스형태로 보여준다.
 	QMessageBox::information(this, "Request Product", "Title : " + query1->value(6).toString()
 		+ "\n" + "Care : " + care
 		+ "\n" + "Symptom : " + query1->value(8).toString()
@@ -73,6 +75,7 @@ void UserWindow::showData()
 
 	while (query->next());
 
+	// UserWindow 상에서 자신이 제품을 올린 정보를 보여준다.
 	while (query->previous())
 	{
 		str = query->value(12).toString();
@@ -85,7 +88,7 @@ void UserWindow::showData()
 		else
 			str += "Finish    \tl ";
 
-		str += query->value(6).toString();
+		str += query->value(8).toString();
 
 		list << str;
 	}

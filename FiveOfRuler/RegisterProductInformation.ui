@@ -63,6 +63,11 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>productInformation</tabstop>
+  <tabstop>registerCheck</tabstop>
+  <tabstop>registerCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
