@@ -4,6 +4,7 @@
 #include <QtWidgets/QDialog>
 
 #include "ui_QuestionReplyDialog.h"
+#include "UserInstanceManager.h"
 
 class QuestionReplyDialog : public QDialog
 {
@@ -12,13 +13,16 @@ class QuestionReplyDialog : public QDialog
 public:
 	QuestionReplyDialog(QWidget *parent = 0);
 	~QuestionReplyDialog();
+	void setup(int val);
 
 private:
 	Ui::QuestionReplyDialog ui;
+	int num;
 signals:
 	private slots:
 		void slotSubmit();
 		void slotCancle();
+		void write();
 };
 
 #endif

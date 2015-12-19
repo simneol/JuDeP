@@ -1,9 +1,10 @@
 #include "QuestionReplyDialog.h"
 #include "FiveOfRulerDB.h"
 
+
 #include <QtCore/QDebug>
 #include <QtCore/QVector>
-
+#include <QString>
 #include <QtWidgets/QMessageBox>
 
 QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
@@ -24,46 +25,46 @@ QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
 		SLOT(slotCancle()));
 }
 
+
 QuestionReplyDialog::~QuestionReplyDialog()
 {
 	qDebug("~QuestionReplyDialog()");
 }
 
+void QuestionReplyDialog::setup(int val)
+{
+	num = val;
+	QString index = QString::number(num);
+	
+	QSqlQuery *query = FiveOfRulerDB::select("qna", "postIndex", index);
+	ui.textEdit_Question->setText(query->value(3).toString());
+	ui.label_QuestionerID->setText(query->value(1).toString());
+
+}
+
+void QuestionReplyDialog::write()
+{
+	
+}
 void QuestionReplyDialog::slotSubmit()
 {
-	/*if(is_idDuplicated)
-	{
-		QMessageBox msgbox;
-		msgbox.setText("Please check duplication !");
-		msgbox.exec();
-		return;
-	}
-	QVector<QString> column;
-	column.push_back("id");
-	column.push_back("pw");
-	column.push_back("email");
-	column.push_back("question");
-	column.push_back("answer");
-	QVector<QString> record;
-	record.push_back(ui.idLineEdit->text());
-	record.push_back(ui.pwLineEdit->text());
-	record.push_back(ui.emailLineEdit->text());
-	record.push_back(QString::number((ui.questionComboBox->currentIndex())));
-	record.push_back(ui.answerLineEdit->text());
-	QMessageBox msgBox;
-	if(FiveOfRulerDB::insert("user",column,record)!=NULL)
-		msgBox.setText(" Registration Complete ! ");
-	else
-		msgBox.setText(" Registration Fail ! ");
-	msgBox.exec();
-	this->close();*/
+	QSqlQuery *query = FiveOfRulerDB::select("qna", "postIndex", QString::number(num));
+
+	QVector<QPair<QString,QString> > data;
+	Info* user = (Info *)InstanceOfUserManager.getInfo();
+	QString id = user->getId();
+	data.push_back(qMakePair<QString,QString>("writer", id));
+	QString title = "Re : " + query->value(2).toString();
+	data.push_back(qMakePair<QString,QString>("title", title));
+	data.push_back(qMakePair<QString,QString>("content",ui.textEdit_Answer->toPlainText()));
+	data.push_back(qMakePair<QString,QString>("isReply","true"));
+
+	QSqlQuery *query2 = FiveOfRulerDB::insert("qna", data);
+
+	this->close();
 }
 
 void QuestionReplyDialog::slotCancle()
 {
-	/*QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
-	if(query->value(0).toString().compare(ui.idLineEdit->text())!=0)
-		is_idDuplicated=false;
-	else
-		is_idDuplicated=true;*/
+	this->close();
 }
