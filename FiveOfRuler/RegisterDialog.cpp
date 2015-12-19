@@ -14,13 +14,16 @@ RegisterDialog::RegisterDialog(QWidget *parent)
 	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(slotSignup()));
 	connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(slotCheckIdDuplication()));
 
+	//id창의 항목이 변경되면, 중복체크를 다시 하도록 설정
 	connect(ui.idLineEdit,SIGNAL(textChanged(QString)),this,SLOT(slotInitDuplication()));
 }
 
 RegisterDialog::~RegisterDialog(){qDebug("~RegisterDialog()");}
 
+// 회원가입 과정
 void RegisterDialog::slotSignup()
 {
+	// ID 중복체크를 안했거나, 중복일 시
 	if(is_idDuplicated)
 	{
 		QMessageBox msgbox;
@@ -28,6 +31,7 @@ void RegisterDialog::slotSignup()
 		msgbox.exec();
 		return;
 	}
+	// 각 column에 해당하는 record를 pair로 묶어서 vector에 삽입
 	QVector<QPair<QString,QString> > data;
 	data.push_back(qMakePair<QString,QString>("id",ui.idLineEdit->text()));
 	data.push_back(qMakePair<QString,QString>("pw",ui.pwLineEdit->text()));
@@ -47,6 +51,7 @@ void RegisterDialog::slotSignup()
 void RegisterDialog::slotCheckIdDuplication()
 {
 	QMessageBox msgBox;
+	// User, Technician 모두 찾아서 유효한 게 나오면 중복
 	QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
 	if(!query->isValid())
 		query=FiveOfRulerDB::select("technician","id",ui.idLineEdit->text());
@@ -63,7 +68,9 @@ void RegisterDialog::slotCheckIdDuplication()
 	msgBox.exec();
 }
 
+// 중복체크를 다시 해야하는경우
 void RegisterDialog::slotInitDuplication()
 {
+	// 변수 초기화
 	is_idDuplicated=true;
 }

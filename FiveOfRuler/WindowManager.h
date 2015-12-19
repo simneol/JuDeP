@@ -1,6 +1,6 @@
 #ifndef WINDOWMANAGER_H
 #define WINDOWMANAGER_H
-
+/* 각 Window들의 객체를 갖고, window를 열고 닫을 수 있도록 하는 클래스 */
 #include "LoginWindow.h"
 #include "UserWindow.h"
 #include "TechnicianWindow.h"

@@ -1,6 +1,6 @@
 #ifndef REGISTERDIALOG_H
 #define REGISTERDIALOG_H
-
+/* 회원 가입을 할 수 있는 창 */
 #include <QtWidgets/QDialog>
 
 #include "ui_RegisterDialog.h"
