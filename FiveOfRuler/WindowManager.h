@@ -20,6 +20,7 @@ public:
 	~WindowManager();
 	static void slotOpenWindow(QString windowName,Info* info=NULL);
 	static void slotCloseWindow(QString windowName);
+	static QMainWindow* getWindow(QString windowName);
 signals:
 	private slots:
 };

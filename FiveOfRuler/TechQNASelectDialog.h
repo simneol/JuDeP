@@ -12,7 +12,6 @@
 #include <QTableWidget.h>
 #include <QMessageBox>
 
-#include "TechnicianWindow.h"
 #include "User.h"
 #include "TechUser.h"
 #include "ui_techQNASelectDialog.h"
@@ -27,13 +26,11 @@ public:
 	~TechQNASelectDialog();
 
 	void showData();
-	void setDialog(TechnicianWindow *window);
 private:
 	Ui::TechQNASelectDialog ui;
 	TechUser* user;
 	int selectNumber;
 	QStringListModel *model;
-	TechnicianWindow *window;
 signals:
 	private slots :
 		void onClickSelectBtn();
