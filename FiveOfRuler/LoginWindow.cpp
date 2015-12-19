@@ -1,6 +1,7 @@
 #include "LoginWindow.h"
 #include "FiveOfRulerDB.h"
 #include "User.h"
+#include "TechUser.h"
 #include "UserInstanceManager.h"
 #include "WindowManager.h"
 
@@ -53,6 +54,11 @@ void LoginWindow::slotLogin(void)
 		// Technician User
 		else if(!isUser)
 		{
+			TechUser *user=new TechUser();
+			user->setId(ui.lineEdit_Id->text());
+			InstanceOfUserManager.setInfo(user);
+			user->setType(query->value(8).toBool());
+
 			WindowManager::slotOpenWindow("TechnicianWindow");
 		}
 		WindowManager::slotCloseWindow("LoginWindow");

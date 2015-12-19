@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>ProductSearchDialog</class>
+ <widget class="QDialog" name="ProductSearchDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -101,11 +101,6 @@
     <string>나가기</string>
    </property>
   </widget>
-  <zorder>label_ProductSearch</zorder>
-  <zorder>formLayoutWidget</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>listView_ProductItem</zorder>
-  <zorder>btn_Cancel</zorder>
  </widget>
  <resources/>
  <connections/>

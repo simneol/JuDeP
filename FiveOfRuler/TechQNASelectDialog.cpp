@@ -27,13 +27,14 @@ TechQNASelectDialog::~TechQNASelectDialog(){ qDebug("~QNASeeDialog()"); }
 // 리스트에나온 QNA를 눌렀을 때 내용을 다이어로그로 보여주는 함수
 void TechQNASelectDialog::onClickListItem(const QModelIndex &index)
 {
-	qDebug("%d",index);
-	selectNumber = (index.data().toInt());
+	selectNumber = index.row() + 1;
 }
 
 void TechQNASelectDialog::onClickSelectBtn()
 {
 	TechnicianWindow *target = (TechnicianWindow*)WindowManager::getWindow("TechnicianWindow");
+	qDebug("SelectButton");
+	qDebug("%d", selectNumber);
 	target->OpenQuestionReplyDialog(selectNumber);
 }
 
