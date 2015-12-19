@@ -6,6 +6,7 @@
 
 #include <QtWidgets/QMessageBox>
 
+// 제품의 기본적인 정보들과 시그널의 처리를 다루는 생성자이다.
 RegisterProductInformation::RegisterProductInformation(QWidget *parent, User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
@@ -16,8 +17,10 @@ RegisterProductInformation::RegisterProductInformation(QWidget *parent, User* us
 	connect(ui.registerCancel, SIGNAL(clicked()), this, SLOT(closeRegister()));	// 끈다양
 }
 
+// 이 객체의 종료를 의미한다.
 RegisterProductInformation::~RegisterProductInformation(){ qDebug("~QNAWriteDialog()"); }
 
+// 제품의 등록을 하는 메서드이다.
 void RegisterProductInformation::write()
 {
 	QVector<QPair<QString, QString> > data;
@@ -47,6 +50,7 @@ void RegisterProductInformation::write()
 	}
 }
 
+// 제품등록 창을 종료하는 메서드이다.
 void RegisterProductInformation::closeRegister()
 {
 	this->close();

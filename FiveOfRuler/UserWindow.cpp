@@ -21,6 +21,7 @@ UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	connect(ui.QnA,SIGNAL(clicked()),userManager,SLOT(openQNAWriteDialog()));
 	connect(ui.RegiterProduct, SIGNAL(clicked()), userManager, SLOT(openRequestDialog()));
 	connect(ui.SeeQnA, SIGNAL(clicked()), userManager, SLOT(openQNASeeDialog()));
+	connect(ui.Message, SIGNAL(clicked()), userManager, SLOT(openMessageDialog()));
 	connect(ui.RegisterProductInformation, SIGNAL(clicked()), userManager, SLOT(openRegisterProductInformation()));
 
 	connect(ui.listView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));

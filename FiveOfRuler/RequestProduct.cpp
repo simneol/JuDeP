@@ -7,6 +7,7 @@
 
 #include <QtWidgets/QMessageBox>
 
+// 제품의 수리를 맡기게 되는 메서드이다.
 RequestProduct::RequestProduct(QWidget *parent, User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
@@ -21,6 +22,7 @@ RequestProduct::RequestProduct(QWidget *parent, User* user) : QDialog(parent)
 
 RequestProduct::~RequestProduct(){ qDebug("~RequestProduct()"); }
 
+// 제품의 기본적인 정보를 저장하여 사용하게되는 메서드이다.
 void RequestProduct::write()
 {
 	QVector<QPair<QString, QString> > data;
@@ -55,6 +57,7 @@ void RequestProduct::write()
 	}
 }
 
+// 열려진 창을 닫는 메서드이다.
 void RequestProduct::closeRequest()
 {
 	this->close();
@@ -62,12 +65,13 @@ void RequestProduct::closeRequest()
 	delete this;
 }
 
+// 버튼이 눌렸을 때 실행하는 메서드이다.
 void RequestProduct::on_pushButton_clicked()
 {
 	QMessageBox::information(this, "Item Selection", ui.nameComboBox->currentText());
 }
 
-
+// 콤보박스에 값을 저장하는 메서드이다. 콤보박스에는 사용자가 등록한 제품만 등록할 수 있으므로 콤보박스를 사용하는 메서드이다.
 void RequestProduct::pushCombobox()
 {
 	QSqlQuery *query = FiveOfRulerDB::select("product", "User_Table_Id", user->getId());

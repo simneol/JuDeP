@@ -6,6 +6,7 @@
 #include "User.h"
 #include "ui_RegisterProductInformation.h"
 
+// 사용자가 자신의 제품을 등록해서 그 제품을 가지고 여러 사용을 하는 클래스이다.
 class RegisterProductInformation : public QDialog
 {
 	Q_OBJECT

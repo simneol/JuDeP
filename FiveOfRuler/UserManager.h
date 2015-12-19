@@ -8,9 +8,11 @@
 #include "QlistWindow.h"
 #include "RequestProduct.h"
 #include "RegisterProductInformation.h"
+#include "Message.h"
 #include "RequestShow.h"
 #include "User.h"
 
+// 사용자에 대한 기본적인 연산을 하는 클래스이다.
 class UserManager : public QObject
 {
 	Q_OBJECT
@@ -23,6 +25,7 @@ private:
 	QNAWriteDialog *qnaWriteDialog;
 	QlistWindow *qnaSeeDialog;
 	User *user;
+	Message *message;
 	RegisterProductInformation * registerProduc;
 
 	RequestProduct *requestDialog;
@@ -34,6 +37,7 @@ private:
 		void openQNASeeDialog();
 		void openRequestDialog();
 		void openRequestShowDialog();
+		void openMessageDialog();
 		void openRegisterProductInformation();
 };
 #endif

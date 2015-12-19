@@ -5,6 +5,7 @@
 
 #include "ui_RegisterProduct.h"
 
+// 
 class RegisterProductDialog : public QDialog
 {
 	Q_OBJECT

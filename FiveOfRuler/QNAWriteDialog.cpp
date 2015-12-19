@@ -6,6 +6,7 @@
 
 #include <QtWidgets/QMessageBox>
 
+// Qna의 기본적인 정보들과 시그널에대한 처리를하는 생성자이다.
 QNAWriteDialog::QNAWriteDialog(QWidget *parent,User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
@@ -16,6 +17,7 @@ QNAWriteDialog::QNAWriteDialog(QWidget *parent,User* user) : QDialog(parent)
 	connect(ui.sendcansel, SIGNAL(clicked()), this, SLOT(closeQNA()));	// 끈다양
 }
 
+// 이 객체를 종료하는 소멸자이다.
 QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
 
 void QNAWriteDialog::write()
@@ -45,6 +47,7 @@ void QNAWriteDialog::write()
 	}
 }
 
+// Qna의 창을 닫기위한 메서드이다.
 void QNAWriteDialog::closeQNA()
 {
 	this->close();

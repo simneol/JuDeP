@@ -15,6 +15,7 @@
 #include "User.h"
 #include "ui_QNASeeDialog.h"
 
+// Qna의 등록된 정보를 확인할 수 있는 클래스이다. Qna에 대한 내용은 그에 해당하는 Qna를 클릭할 경우 정보들이 실행되는 메서드를 가지고있는 클래스이다.
 class QlistWindow : public QDialog
 {
 	Q_OBJECT

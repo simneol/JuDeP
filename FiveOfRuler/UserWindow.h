@@ -7,6 +7,7 @@
 #include "UserManager.h"
 #include "ui_UserWindow.h"
 
+// 사용자에 대한 창의 처리를 하는 클래스이다.
 class UserWindow : public QMainWindow
 {
 	Q_OBJECT

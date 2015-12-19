@@ -6,6 +6,7 @@
 #include "User.h"
 #include "ui_QNAWriteDialog.h"
 
+// Qna의 정보를 쓰는 클래스이다.
 class QNAWriteDialog : public QDialog
 {
 	Q_OBJECT

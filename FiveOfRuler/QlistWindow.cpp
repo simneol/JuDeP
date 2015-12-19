@@ -17,11 +17,12 @@ QDialog(parent)
 	connectSignal(user);
 }
 
+// 리스트의 정보를 정리하는 소멸자이다.
 QlistWindow::~QlistWindow()
 {
 }
 
-// 시그널을 구분하는 함수
+// 시그널을 구분하는 메서드이다.
 void QlistWindow::connectSignal(User *user)
 {
 	connect(ui.listView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));

@@ -6,6 +6,7 @@
 #include "User.h"
 #include "ui_QNASeeDialog.h"
 
+// Qna의 정보를 보는 클래스이다.
 class QNASeeDialog : public QDialog
 {
 	Q_OBJECT
