@@ -19,7 +19,8 @@ UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	connect(ui.QnA,SIGNAL(clicked()),userManager,SLOT(openQNAWriteDialog()));
 	connect(ui.RegiterProduct, SIGNAL(clicked()), userManager, SLOT(openRequestDialog()));
 	connect(ui.SeeQnA, SIGNAL(clicked()), userManager, SLOT(openQNASeeDialog()));
-	connect(ui.RegisterProductInformation, SIGNAL(clicked()), userManager, SLOT(openRegisterProductInformation()));
+
+	connect(ui.RequestRepair, SIGNAL(clicked()), userManager, SLOT(openRequestShowDialog()));
 
 	connect(ui.listView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
 	connect(ui.NewWindowRequest, SIGNAL(clicked()), this, SLOT(newWindow()));
@@ -84,7 +85,7 @@ void UserWindow::showData()
 		else
 			str += "Finish    \tl ";
 
-		str += query->value(8).toString();
+		str += query->value(6).toString();
 
 		list << str;
 	}
