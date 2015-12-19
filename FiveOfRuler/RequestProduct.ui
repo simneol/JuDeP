@@ -39,16 +39,6 @@
     <string>닫기</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="Requesthead">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>120</y>
-     <width>551</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="Requestcontent">
    <property name="geometry">
     <rect>
@@ -142,6 +132,22 @@
    </property>
    <property name="text">
     <string>Etc</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="nameComboBox">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>120</y>
+     <width>368</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="currentText">
+    <string/>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
    </property>
   </widget>
  </widget>

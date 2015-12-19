@@ -15,8 +15,8 @@ User* UserManager::getUser(){return user;}
 
 void UserManager::logout()
 {
-	WindowManager::openWindow("LoginWindow");
-	WindowManager::closeWindow("UserWindow");
+	WindowManager::slotOpenWindow("LoginWindow");
+	WindowManager::slotCloseWindow("UserWindow");
 }
 
 void UserManager::openQNAWriteDialog()
@@ -41,6 +41,12 @@ void UserManager::openRequestShowDialog()
 {
 	reauestShowDialog = new RequestShow(0, user);
 	reauestShowDialog->show();
+}
+
+void UserManager::openRegisterProductInformation()
+{
+	registerProduc = new RegisterProductInformation(0, user);
+	registerProduc->show();
 }
 
 UserWindow::~UserWindow(){ qDebug("~UserWindow()"); }

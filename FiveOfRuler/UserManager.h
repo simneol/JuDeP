@@ -8,6 +8,7 @@
 #include "QlistWindow.h"
 #include "RequestProduct.h"
 #include "RequestShow.h"
+#include "RegisterProductInformation.h"
 #include "User.h"
 
 class UserManager : public QObject
@@ -25,6 +26,7 @@ private:
 
 	RequestProduct *requestDialog;
 	RequestShow *reauestShowDialog;
+	RegisterProductInformation *registerProduc;
 
 	public slots:
 		void logout();
@@ -32,5 +34,6 @@ private:
 		void openQNASeeDialog();
 		void openRequestDialog();
 		void openRequestShowDialog();
+		void openRegisterProductInformation();
 };
 #endif
