@@ -8,7 +8,6 @@
 
 #include "ui_TechnicianWindow.h"
 #include "QuestionReplyDialog.h"
-#include "TechQNASelectDialog.h"
 
 
 class TechnicianWindow : public QMainWindow
@@ -20,10 +19,11 @@ public:
 	~TechnicianWindow();
 	void CloseAllDialog();
 	void OpenDialog(QString str);
+	void OpenQuestionReplyDialog(int val);
 private:
 	Ui::TechnicianWindow ui;
-	QMap<QString, QDialog*> dialogs;
-
+	QMap<QString, QDialog*> *dialogs;
+	int QNAIndex;
 signals:
 	private slots:
 		void slotLogout();
