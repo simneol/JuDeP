@@ -1,6 +1,7 @@
 #include "TechnicianWindow.h"
 
 #include "WindowManager.h"
+#include "TechQNASelectDialog.h"
 #include <QtCore/QDebug>
 
 TechnicianWindow::TechnicianWindow(QWidget *parent)
@@ -29,19 +30,26 @@ void TechnicianWindow::slotLogout()
 
 void TechnicianWindow::slotOpenQuestionReplyWindow()
 {
-	OpenDialog("TechQNASelectDialog");
+	QDialog *target = OpenDialog("TechQNASelectDialog");
+	TechQNASelectDialog *target2 = (TechQNASelectDialog *)target;
+	target2->setDialog(this);
 }
 
+void TechnicianWindow::OpenQuestionReplyDialog(int val)
+{
+	CloseAllDialog();
+	OpenDialog("QuestionReply");
+}
 #pragma region DialogControll
 
-void TechnicianWindow::OpenDialog(QString str)
+QDialog* TechnicianWindow::OpenDialog(QString str)
 {
 	QDialog *target = NULL;
 	target = dialogs.value(str);
 	if(target == NULL)
 	{
 		qDebug("Open-New");
-		if(str == "QuestionReply")
+		if(str == "QuestionReplyDialog")
 		{
 			target = new QuestionReplyDialog();
 		}
@@ -60,7 +68,8 @@ void TechnicianWindow::OpenDialog(QString str)
 		target->hasFocus();
 	}
 
-	this->hide();
+	return target;
+	// this->hide();
 }
 
 void TechnicianWindow::CloseAllDialog()

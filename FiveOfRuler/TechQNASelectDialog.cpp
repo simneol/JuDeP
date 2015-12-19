@@ -6,22 +6,69 @@
 
 #include <QtWidgets/QMessageBox>
 
-TechQNASelectDialog::TechQNASelectDialog(QWidget *parent, User* user) : QDialog(parent)
+TechQNASelectDialog::TechQNASelectDialog(QWidget *parent, TechUser* user) : QDialog(parent)
 {
+	selectNumber = -1;
 	ui.setupUi(this);
 	this->user = user;
+
+	showData();
+
+	connect(ui.listView_qna, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
+	connect(ui.btn_Select, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
 }
 
+void TechQNASelectDialog::setDialog(TechnicianWindow *window)
+{
+	this->window = window;
+}
 TechQNASelectDialog::~TechQNASelectDialog(){ qDebug("~QNASeeDialog()"); }
 
-void TechQNASelectDialog::write()
-{
-	QString column, record;
+#pragma region Signal
 
-	//QSqlQuery *query = FiveOfRulerDB::select("qna", column, record);
+// 리스트에나온 QNA를 눌렀을 때 내용을 다이어로그로 보여주는 함수
+void TechQNASelectDialog::onClickListItem(const QModelIndex &index)
+{
+	qDebug("%d",index);
+	selectNumber = (index.data().toInt());
 }
 
-void TechQNASelectDialog::closeQNA()
+void TechQNASelectDialog::onClickSelectBtn()
 {
-	this->close();
+	window->OpenQuestionReplyDialog(selectNumber);
 }
+
+void TechQNASelectDialog::showData()
+{
+	user = (TechUser *)InstanceOfUserManager.getInfo();
+	model = new QStringListModel(this);
+
+	int i;
+
+	QStringList list;
+	QString str;
+
+	QSqlQuery *query = FiveOfRulerDB::select("qna", "isReply", "false");
+
+	while (query->next());
+
+	while (query->previous())
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (!j)
+				str = query->value(j).toString();
+			else
+				str += query->value(j).toString();
+
+			if (j != 2)
+				str += "  \tl ";
+		}
+		list << str;
+	}
+	model->setStringList(list);
+
+	ui.listView_qna->setModel(model);
+}
+
+#pragma endregion
