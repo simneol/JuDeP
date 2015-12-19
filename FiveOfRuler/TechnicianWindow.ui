@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>357</width>
-    <height>297</height>
+    <height>325</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
+      <y>90</y>
       <width>101</width>
       <height>83</height>
      </rect>
@@ -88,6 +88,39 @@
       <widget class="QPushButton" name="btn_RepairStatus">
        <property name="text">
         <string>Repair Status</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>200</y>
+      <width>321</width>
+      <height>83</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="btn_Assign">
+       <property name="text">
+        <string>Repair Request Assign</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_productImport">
+       <property name="text">
+        <string>Product Import</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_compoImport">
+       <property name="text">
+        <string>Component Import</string>
        </property>
       </widget>
      </item>

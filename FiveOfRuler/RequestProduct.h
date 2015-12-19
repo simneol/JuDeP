@@ -3,9 +3,6 @@
 
 #include <QtWidgets/QDialog>
 
-#include <QDialog>
-#include <QMessageBox>
-
 #include "User.h"
 #include "ui_RequestProduct.h"
 
@@ -16,7 +13,6 @@ class RequestProduct : public QDialog
 public:
 	RequestProduct(QWidget *parent = 0, User* user = NULL);
 	~RequestProduct();
-	void pushCombobox();
 
 private:
 	Ui::RequestProduct ui;
@@ -25,8 +21,7 @@ private:
 signals:
 	private slots :
 		void write();
-		void closeRequest();
-		void on_pushButton_clicked();
+	void closeRequest();
 };
 
 #endif // REQUESTPRODUCT_H

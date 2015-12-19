@@ -20,7 +20,6 @@ QNAWriteDialog::~QNAWriteDialog(){qDebug("~QNAWriteDialog()");}
 
 void QNAWriteDialog::write()
 {
-	QVector<QPair<QString, QString> > data;
 	QMessageBox msgbox;
 
 	// 제목이나 내용중 하나를 빠뜨리고 썼을때 실행
@@ -33,14 +32,12 @@ void QNAWriteDialog::write()
 	// 모든 빈 칸을 채웠을 때 실행
 	else
 	{
-		data.push_back(qMakePair<QString, QString>("writer", user->getId()));
-		data.push_back(qMakePair<QString, QString>("title", ui.head->text()));
-		data.push_back(qMakePair<QString, QString>("content", ui.content->toPlainText()));
+		QVector<QPair<QString,QString> > data;
+		data.push_back(qMakePair<QString,QString>("writer",user->getId()));
+		data.push_back(qMakePair<QString,QString>("title",ui.head->text()));
+		data.push_back(qMakePair<QString,QString>("content",ui.content->toPlainText()));
 
-		if (FiveOfRulerDB::insert("qna", data) != NULL)
-			msgbox.setText(" Registration Complete ! ");
-		else
-			msgbox.setText(" Registration Fail ! ");
+		QSqlQuery *query = FiveOfRulerDB::insert("qna", data);
 
 		msgbox.setText("Success !");
 		msgbox.exec();

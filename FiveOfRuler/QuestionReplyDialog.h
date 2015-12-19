@@ -12,6 +12,7 @@ class QuestionReplyDialog : public QDialog
 public:
 	QuestionReplyDialog(QWidget *parent = 0);
 	~QuestionReplyDialog();
+	void setup(int val);
 
 private:
 	Ui::QuestionReplyDialog ui;

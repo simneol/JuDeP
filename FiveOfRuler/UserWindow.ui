@@ -53,6 +53,19 @@
      <string>Message</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="RequestRepair">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>520</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RequestRepair</string>
+    </property>
+   </widget>
    <widget class="QPushButton" name="QnA">
     <property name="geometry">
      <rect>
@@ -193,19 +206,6 @@
     </property>
     <property name="text">
      <string>여백의 미</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="RegisterProductInformation">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>550</y>
-      <width>171</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RegisterProduct</string>
     </property>
    </widget>
   </widget>

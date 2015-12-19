@@ -37,7 +37,9 @@ void TechnicianWindow::slotOpenQuestionReplyWindow()
 void TechnicianWindow::OpenQuestionReplyDialog(int val)
 {
 	CloseAllDialog();
-	OpenDialog("QuestionReply");
+	QuestionReplyDialog *target = (QuestionReplyDialog *)OpenDialog("QuestionReplyDialog");
+	target->setup(val);
+
 }
 #pragma region DialogControll
 
@@ -63,7 +65,9 @@ QDialog* TechnicianWindow::OpenDialog(QString str)
 		qDebug("Open-AlreadyHave");
 	}
 	target->show();
-	return NULL;
+	target->hasFocus();
+
+	return target;
 	// this->hide();
 }
 
