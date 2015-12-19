@@ -18,11 +18,11 @@ public:
 	TechnicianWindow(QWidget *parent = 0);
 	~TechnicianWindow();
 	void CloseAllDialog();
-	void OpenDialog(QString str);
+	QDialog* OpenDialog(QString str);
 	void OpenQuestionReplyDialog(int val);
 private:
 	Ui::TechnicianWindow ui;
-	QMap<QString, QDialog*> *dialogs;
+	QMap<QString, QDialog*> dialogs;
 	int QNAIndex;
 signals:
 	private slots:

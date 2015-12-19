@@ -1,16 +1,14 @@
 #include "TechnicianWindow.h"
-#include "TechQNASelectDialog.h"
 
 #include "WindowManager.h"
+#include "TechQNASelectDialog.h"
 #include <QtCore/QDebug>
 
 TechnicianWindow::TechnicianWindow(QWidget *parent)
 	: QMainWindow(parent)
 {		
 	ui.setupUi(this);
-	dialogs = new QMap<QString, QDialog*>();
-	dialogs->clear();
-
+	
 	connect(ui.action_Logout,
 		SIGNAL(triggered()),
 		this,
@@ -32,22 +30,22 @@ void TechnicianWindow::slotLogout()
 
 void TechnicianWindow::slotOpenQuestionReplyWindow()
 {
-	OpenDialog("TechQNASelectDialog");
+	QDialog *target = OpenDialog("TechQNASelectDialog");
+	TechQNASelectDialog *target2 = (TechQNASelectDialog *)target;
+	target2->setDialog(this);
 }
 
 void TechnicianWindow::OpenQuestionReplyDialog(int val)
 {
-	QDialog *target = nullptr;
-	target = (*dialogs)["TechQNASelectDialog"];
-	qDebug("go");
-	OpenDialog("QuestionReplyDialog");
+	CloseAllDialog();
+	OpenDialog("QuestionReply");
 }
 #pragma region DialogControll
 
-void TechnicianWindow::OpenDialog(QString str)
+QDialog* TechnicianWindow::OpenDialog(QString str)
 {
 	QDialog *target = NULL;
-	target = dialogs->value(str);
+	target = dialogs.value(str);
 	if(target == NULL)
 	{
 		qDebug("Open-New");
@@ -59,7 +57,7 @@ void TechnicianWindow::OpenDialog(QString str)
 		{
 			target = new TechQNASelectDialog();
 		}
-		dialogs->insert(str, target);
+		dialogs.insert(str, target);
 		target->show();
 		target->hasFocus();
 	}
@@ -70,20 +68,18 @@ void TechnicianWindow::OpenDialog(QString str)
 		target->hasFocus();
 	}
 
+	return target;
 	// this->hide();
 }
 
 void TechnicianWindow::CloseAllDialog()
 {
-	if(dialogs->isEmpty() == false)
+	qDebug("Close-");
+	foreach (QDialog* dialog, dialogs)
 	{
-
-		foreach(QString key, dialogs->keys())
-		{
-			((QDialog*)dialogs->value(key))->hide();
-		}
-
+		dialog->hide();
 	}
+
 	this->hasFocus();
 }
 #pragma endregion

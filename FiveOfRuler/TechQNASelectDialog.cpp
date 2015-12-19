@@ -15,7 +15,7 @@ TechQNASelectDialog::TechQNASelectDialog(QWidget *parent, TechUser* user) : QDia
 	showData();
 
 	connect(ui.listView_qna, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
-	connect(ui.btn_Select, SIGNAL(clicked()), this, SLOT(onClickSelectBtn()));
+	connect(ui.btn_Select, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
 }
 
 void TechQNASelectDialog::setDialog(TechnicianWindow *window)
