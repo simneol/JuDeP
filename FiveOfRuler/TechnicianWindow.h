@@ -28,6 +28,9 @@ signals:
 	private slots:
 		void slotLogout();
 		void slotOpenQuestionReplyWindow();
+		void slotOpenRegisterProductDialog();
+		void slotOpenComponentSearchDialog();
+		void slotOpenProductSearchDialog();
 };
 
 #endif // TECHNICIANWINDOW_H

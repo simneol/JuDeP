@@ -2,6 +2,9 @@
 
 #include "WindowManager.h"
 #include "TechQNASelectDialog.h"
+#include "RegisterProductDialog.h"
+#include "ProductSearchDialog.h"
+#include "ComponentSearchDialog.h"
 #include <QtCore/QDebug>
 
 TechnicianWindow::TechnicianWindow(QWidget *parent)
@@ -23,6 +26,11 @@ TechnicianWindow::TechnicianWindow(QWidget *parent)
 		SIGNAL(clicked()),
 		this,
 		SLOT(slotOpenQuestionReplyWindow()));
+
+	connect(ui.btn_RegiterProduct,
+		SIGNAL(clicked()),
+		this,
+		SLOT(slotOpenRegisterProductDialog()));
 }
 
 TechnicianWindow::~TechnicianWindow(){qDebug("~TechnicianWindow()");}
@@ -31,6 +39,21 @@ void TechnicianWindow::slotLogout()
 {
 	WindowManager::slotOpenWindow("LoginWindow");
 	WindowManager::slotCloseWindow("TechnicianWindow");
+}
+
+void TechnicianWindow::slotOpenRegisterProductDialog()
+{
+	QDialog *target = OpenDialog("RegisterProduct");
+}
+
+void TechnicianWindow::slotOpenComponentSearchDialog()
+{
+	QDialog *target = OpenDialog("ComponentSearch");
+}
+
+void TechnicianWindow::slotOpenProductSearchDialog()
+{
+	QDialog *target = OpenDialog("ProductSearch");
 }
 
 void TechnicianWindow::slotOpenQuestionReplyWindow()
@@ -55,13 +78,26 @@ QDialog* TechnicianWindow::OpenDialog(QString str)
 	if(target == NULL)
 	{
 		qDebug("Open-New");
-		if(str == "QuestionReplyDialog")
+		
+		if(str == "ComponentSearch")
+		{
+			target = new ComponentSearchDailog();
+		}
+		else if(str == "ProductSearch")
+		{
+			target = new ProductSearchDialog();
+		}
+		else if(str == "QuestionReplyDialog")
 		{
 			target = new QuestionReplyDialog();
 		}
 		else if(str == "TechQNASelectDialog")
 		{
 			target = new TechQNASelectDialog();
+		}
+		else if(str == "RegisterProduct")
+		{
+			target = new RegisterProductDialog();
 		}
 		dialogs.insert(str, target);
 	}
