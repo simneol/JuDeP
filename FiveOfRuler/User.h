@@ -8,6 +8,7 @@ class User : public Info
 private:
 
 public:
-
+	User() {}
+	virtual ~User() {}
 };
 #endif
