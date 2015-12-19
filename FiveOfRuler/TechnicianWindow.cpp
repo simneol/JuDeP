@@ -31,6 +31,16 @@ TechnicianWindow::TechnicianWindow(QWidget *parent)
 		SIGNAL(clicked()),
 		this,
 		SLOT(slotOpenRegisterProductDialog()));
+
+	connect(ui.btn_compoSearch,
+		SIGNAL(clicked()),
+		this,
+		SLOT(slotOpenComponentSearchDialog()));
+
+	connect(ui.btn_productSearch,
+		SIGNAL(clicked()),
+		this,
+		SLOT(slotOpenProductSearchDialog()));
 }
 
 TechnicianWindow::~TechnicianWindow(){qDebug("~TechnicianWindow()");}
