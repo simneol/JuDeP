@@ -27,88 +27,10 @@
      <string>문주원 바보</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RegiterProduct">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>310</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RegiterProduct</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="message">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Message</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="QnA">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>130</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>QnA</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="logout">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>20</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Logout</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Withdrawal">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>370</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Withdrawal</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="SeeQnA">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>160</y>
-      <width>91</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SeeQNA</string>
-    </property>
-   </widget>
    <widget class="QListView" name="listView">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>230</x>
       <y>130</y>
       <width>491</width>
       <height>261</height>
@@ -118,7 +40,7 @@
    <widget class="QLabel" name="idLabel">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>350</x>
       <y>80</y>
       <width>111</width>
       <height>31</height>
@@ -136,7 +58,7 @@
    <widget class="QLabel" name="idLabel_3">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>230</x>
       <y>80</y>
       <width>41</width>
       <height>31</height>
@@ -154,7 +76,7 @@
    <widget class="QLabel" name="idLabel_2">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>510</x>
       <y>80</y>
       <width>61</width>
       <height>31</height>
@@ -172,7 +94,7 @@
    <widget class="QPushButton" name="NewWindowRequest">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>630</x>
       <y>90</y>
       <width>91</width>
       <height>23</height>
@@ -182,18 +104,52 @@
      <string>새로고침</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="RegisterProductInformation">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>370</y>
-      <width>121</width>
-      <height>21</height>
+      <x>40</x>
+      <y>120</y>
+      <width>160</width>
+      <height>281</height>
      </rect>
     </property>
-    <property name="text">
-     <string>RegisterProduct</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="QnA">
+       <property name="text">
+        <string>QnA</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="SeeQnA">
+       <property name="text">
+        <string>SeeQNA</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="RegiterProduct">
+       <property name="text">
+        <string>RegiterProduct</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="RegisterProductInformation">
+       <property name="text">
+        <string>RegisterProduct</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="logout">
+       <property name="text">
+        <string>Logout</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
