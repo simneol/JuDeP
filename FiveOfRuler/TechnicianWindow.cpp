@@ -8,7 +8,12 @@ TechnicianWindow::TechnicianWindow(QWidget *parent)
 	: QMainWindow(parent)
 {		
 	ui.setupUi(this);
-	
+	if(((TechUser *)InstanceOfUserManager.getInfo())->getType() == false)
+	{
+		ui.btn_productImport->hide();
+		ui.btn_Assign->hide();
+		ui.btn_compoImport->hide();
+	}
 	connect(ui.action_Logout,
 		SIGNAL(triggered()),
 		this,

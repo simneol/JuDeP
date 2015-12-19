@@ -57,9 +57,13 @@ void QuestionReplyDialog::slotSubmit()
 	QString title = "Re : " + query->value(2).toString();
 	data.push_back(qMakePair<QString,QString>("title", title));
 	data.push_back(qMakePair<QString,QString>("content",ui.textEdit_Answer->toPlainText()));
-	data.push_back(qMakePair<QString,QString>("isReply","true"));
+	data.push_back(qMakePair<QString,QString>("isReply","1"));
 
-	QSqlQuery *query2 = FiveOfRulerDB::insert("qna", data);
+	//QSqlQuery *query2 = FiveOfRulerDB::insert("qna", data);
+	if(FiveOfRulerDB::insert("qna", data) != NULL)
+	{
+		qDebug() << "Success";
+	}
 
 	this->close();
 }

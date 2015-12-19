@@ -57,6 +57,7 @@ void LoginWindow::slotLogin(void)
 			TechUser *user=new TechUser();
 			user->setId(ui.lineEdit_Id->text());
 			InstanceOfUserManager.setInfo(user);
+			user->setType(query->value(8).toBool());
 
 			WindowManager::slotOpenWindow("TechnicianWindow");
 		}
