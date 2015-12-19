@@ -4,8 +4,8 @@
 
 #include <QtCore/QDebug>
 
-
-// 시그널을 처리하는 생성자
+// 문주원 2014112022
+// 용도 : 시그널을 처리하는 생성자
 UserWindow::UserWindow(QWidget *parent,Info* userInfo)
 	: QMainWindow(parent)
 {

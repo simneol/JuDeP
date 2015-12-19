@@ -4,7 +4,8 @@
 
 #include "WindowManager.h"
 
-// 리스트의 생성자
+// 문주원 2014112022
+// 용도 : 리스트의 생성자
 RequestShow::RequestShow(QWidget *parent, User *user) :
 QDialog(parent)
 {
@@ -21,7 +22,7 @@ RequestShow::~RequestShow()
 {
 }
 
-// 시그널을 구분하는 함수 해당되는 시글널에 해당하는 함수를 불러준다.
+// 용도 : 시그널을 구분하는 함수 해당되는 시글널에 해당하는 함수를 불러준다.
 void RequestShow::connectSignal(User *user)
 {
 	connect(ui.listView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
@@ -29,7 +30,7 @@ void RequestShow::connectSignal(User *user)
 	connect(ui.NewWindowRequest, SIGNAL(clicked()), this, SLOT(newWindow()));
 }
 
-// 리스트에나온 제품정보를 눌렀을 때 내용을 다이어로그로 보여주는 메서드이다.
+// 용도 : 리스트에나온 제품정보를 눌렀을 때 내용을 다이어로그로 보여주는 메서드이다.
 void RequestShow::onClickListItem(const QModelIndex &index)
 {
 	QSqlQuery *query1 = FiveOfRulerDB::select("product", "postIndex", index.data().toString());
@@ -57,7 +58,7 @@ void RequestShow::onClickListItem(const QModelIndex &index)
 		+ "\n\n" + "Re: \n");
 }
 
-// 닫기버튼을 눌렀을시 실행하는 메서드이다.
+// 용도 : 닫기버튼을 눌렀을시 실행하는 메서드이다.
 void RequestShow::closeWindow()
 {
 	this->close();
@@ -65,13 +66,13 @@ void RequestShow::closeWindow()
 	delete this;
 }
 
-// 새로고침하는 메서드이다.
+// 용도 : 새로고침하는 메서드이다.
 void RequestShow::newWindow()
 {
 	showData();
 }
 
-// 역순으로 데이터를 출력하는 메서드이다.
+// 용도 : 역순으로 데이터를 출력하는 메서드이다.
 void RequestShow::showData()
 {
 	model = new QStringListModel(this);

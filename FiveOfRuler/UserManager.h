@@ -12,7 +12,8 @@
 #include "RequestShow.h"
 #include "User.h"
 
-// 사용자에 대한 기본적인 연산을 하는 클래스이다.
+// 문주원 2014112022
+// 용도 : 사용자에 대한 기본적인 연산을 하는 클래스이다.
 class UserManager : public QObject
 {
 	Q_OBJECT
