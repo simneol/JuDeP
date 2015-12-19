@@ -1,5 +1,7 @@
 #include "TechQNASelectDialog.h"
 #include "FiveOfRulerDB.h"
+#include "TechnicianWindow.h"
+#include "WindowManager.h"
 
 #include <QtCore/QDebug>
 #include <QtCore/QVector>
@@ -15,13 +17,9 @@ TechQNASelectDialog::TechQNASelectDialog(QWidget *parent, TechUser* user) : QDia
 	showData();
 
 	connect(ui.listView_qna, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
-	connect(ui.btn_Select, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onClickListItem(const QModelIndex &)));
+	connect(ui.btn_Select, SIGNAL(clicked()), this, SLOT(onClickSelectBtn()));
 }
 
-void TechQNASelectDialog::setDialog(TechnicianWindow *window)
-{
-	this->window = window;
-}
 TechQNASelectDialog::~TechQNASelectDialog(){ qDebug("~QNASeeDialog()"); }
 
 #pragma region Signal
@@ -35,7 +33,8 @@ void TechQNASelectDialog::onClickListItem(const QModelIndex &index)
 
 void TechQNASelectDialog::onClickSelectBtn()
 {
-	window->OpenQuestionReplyDialog(selectNumber);
+	TechnicianWindow *target = (TechnicianWindow*)WindowManager::getWindow("TechnicianWindow");
+	target->OpenQuestionReplyDialog(selectNumber);
 }
 
 void TechQNASelectDialog::showData()

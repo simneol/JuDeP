@@ -32,7 +32,6 @@ void TechnicianWindow::slotOpenQuestionReplyWindow()
 {
 	QDialog *target = OpenDialog("TechQNASelectDialog");
 	TechQNASelectDialog *target2 = (TechQNASelectDialog *)target;
-	target2->setDialog(this);
 }
 
 void TechnicianWindow::OpenQuestionReplyDialog(int val)
@@ -58,17 +57,13 @@ QDialog* TechnicianWindow::OpenDialog(QString str)
 			target = new TechQNASelectDialog();
 		}
 		dialogs.insert(str, target);
-		target->show();
-		target->hasFocus();
 	}
 	else
 	{
 		qDebug("Open-AlreadyHave");
-		target->show();
-		target->hasFocus();
 	}
-
-	return target;
+	target->show();
+	return NULL;
 	// this->hide();
 }
 
