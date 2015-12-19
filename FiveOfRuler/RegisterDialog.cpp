@@ -40,7 +40,13 @@ void RegisterDialog::slotSignup()
 	data.push_back(qMakePair<QString,QString>("answer",ui.answerLineEdit->text()));
 
 	QMessageBox msgBox;
-	if(FiveOfRulerDB::insert("user",data)!=NULL)
+	QSqlQuery *query;
+
+	if(ui.userRadioButton->isChecked())
+		query=FiveOfRulerDB::insert("user",data);
+	else
+		query=FiveOfRulerDB::insert("technician",data);
+	if(query!=NULL)
 		msgBox.setText(" Registration Complete ! ");
 	else
 		msgBox.setText(" Registration Fail ! ");

@@ -1,6 +1,11 @@
+/********************************
+* Info 클래스
+*  - 기능 : user와 technician이 공통적으로 갖고있는 정보를 담는 클래스
+*  - 작성자 : 정민혁
+*********************************/
 #ifndef INFO_H
 #define INFO_H
-// user와 technician의 공통정보를 담고 있는 클래스
+
 #include <QtCore/QString>
 using namespace std;
 class Info

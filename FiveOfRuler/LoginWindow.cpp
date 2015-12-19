@@ -1,3 +1,8 @@
+/********************************
+* LoginWindow 클래스
+*  - 기능 : 로그인을 수행하는 MainWindow
+*  - 작성자 : 정민혁
+*********************************/
 #include "LoginWindow.h"
 #include "FiveOfRulerDB.h"
 #include "User.h"

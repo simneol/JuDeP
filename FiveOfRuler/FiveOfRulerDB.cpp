@@ -1,4 +1,9 @@
-﻿#include "FiveOfRulerDB.h"
+﻿/********************************
+* FiveOfRulerDB 클래스
+*  - 기능 : DB에 직접 접근하여 다른 클래스에서 원하는 자료를 얻어서 전달해주는 클래스
+*  - 작성자 : 정민혁
+*********************************/
+#include "FiveOfRulerDB.h"
 #include "DatabaseInfo.h"
 
 /* Static 변수 선언 */
