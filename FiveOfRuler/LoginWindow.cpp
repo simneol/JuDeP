@@ -18,6 +18,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
 	connect(ui.btn_Login,SIGNAL(clicked()),this,SLOT(slotLogin()));	// 로그인 버튼 누르면, login() 실행
 	connect(ui.lineEdit_Pw,SIGNAL(returnPressed()),this,SLOT(slotLogin()));
+	connect(ui.lineEdit_Id,SIGNAL(returnPressed()),this,SLOT(slotLogin()));
 
 	connect(ui.btn_Register,SIGNAL(clicked()),this,SLOT(slotOpenRegisterDialog()));
 	connect(ui.btn_ForgotIdPw,SIGNAL(clicked()),this,SLOT(slotOpenForgotIdPwDialog()));

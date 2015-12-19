@@ -23,13 +23,9 @@ void ForgotIdPwDialog::slotFind()
 	QSqlQuery *query;
 
 	if(ui.btn_User->isChecked())
-	{
 		query=FiveOfRulerDB::select("user","email",ui.lineEdit_Email->text());
-	}
 	else
-	{
 		query=FiveOfRulerDB::select("technician","email",ui.lineEdit_Email->text());
-	}
 
 	if(ui.radio_Id->isChecked())
 	{
@@ -40,22 +36,29 @@ void ForgotIdPwDialog::slotFind()
 	}
 	else
 	{
-		if(query->isValid())
+		if(query->isValid()
+			&&query->value(3).toInt()==ui.comboBox_Question->currentIndex()
+			&&query->value(4).toString()==ui.lineEdit_Answer->text())
 			msgbox.setText("Your PW : "+query->value(1).toString());
 		else
 			msgbox.setText("Cannot find your PW!");
 	}
 	msgbox.exec();
 	this->close();
-
 }
+
 void ForgotIdPwDialog::slotIdshow()
 {
 	ui.label_Question->hide();
-	ui.lineEdit_Question->hide();
+	ui.label_Answer->hide();
+	ui.comboBox_Question->hide();
+	ui.lineEdit_Answer->hide();
 }
+
 void ForgotIdPwDialog::slotPwshow()
 {
 	ui.label_Question->show();
-	ui.lineEdit_Question->show();
+	ui.label_Answer->show();
+	ui.comboBox_Question->show();
+	ui.lineEdit_Answer->show();
 }

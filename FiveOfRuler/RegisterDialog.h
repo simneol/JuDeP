@@ -19,6 +19,7 @@ private:
 signals:
 	private slots:
 		void slotSignup();
+		void slotInitDuplication();
 		void slotCheckIdDuplication();
 };
 

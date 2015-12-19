@@ -10,10 +10,11 @@ RegisterDialog::RegisterDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
-	is_idDuplicated=true;
 
 	connect(ui.registerButton,SIGNAL(clicked()),this,SLOT(slotSignup()));
 	connect(ui.idDuplicationCheck,SIGNAL(clicked()),this,SLOT(slotCheckIdDuplication()));
+
+	connect(ui.idLineEdit,SIGNAL(textChanged(QString)),this,SLOT(slotInitDuplication()));
 }
 
 RegisterDialog::~RegisterDialog(){qDebug("~RegisterDialog()");}
@@ -45,9 +46,24 @@ void RegisterDialog::slotSignup()
 
 void RegisterDialog::slotCheckIdDuplication()
 {
+	QMessageBox msgBox;
 	QSqlQuery *query=FiveOfRulerDB::select("user","id",ui.idLineEdit->text());
-	if(query->value(0).toString().compare(ui.idLineEdit->text())!=0)
-		is_idDuplicated=false;
-	else
+	if(!query->isValid())
+		query=FiveOfRulerDB::select("technician","id",ui.idLineEdit->text());
+	if(query->isValid())
+	{
+		msgBox.setText("This ID is already exist !! \n Please use another ID !");
 		is_idDuplicated=true;
+	}
+	else
+	{
+		msgBox.setText("This ID can be used !");
+		is_idDuplicated=false;
+	}
+	msgBox.exec();
+}
+
+void RegisterDialog::slotInitDuplication()
+{
+	is_idDuplicated=true;
 }
