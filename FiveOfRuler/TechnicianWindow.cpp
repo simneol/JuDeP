@@ -1,3 +1,8 @@
+/***************************************
+/ 작성자 : 박성수
+/ 클래스 : TechnicianWindow
+/ 용  도 : Technician User의 기능 모음 Window
+/***************************************/
 #include "TechnicianWindow.h"
 
 #include "WindowManager.h"
