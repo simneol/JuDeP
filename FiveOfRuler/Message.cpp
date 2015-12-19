@@ -9,7 +9,8 @@
 
 #include <QtWidgets/QMessageBox>
 
-// 메시지에 관한 기본적인 정의와 시그널을 받아 처리하는 생성자이다.
+// 문주원 2014112022
+// 용도 : 메시지에 관한 기본적인 정의와 시그널을 받아 처리하는 생성자이다.
 Message::Message(QWidget *parent, User* user) : QDialog(parent)
 {
 	ui.setupUi(this);
@@ -59,7 +60,7 @@ void Message::closeMessage()
 	delete this;
 }
 
-// 리스트에나온 정보를 눌렀을 때 내용을 다이어로그로 보여주는 함수
+// 용도 : 리스트에나온 정보를 눌렀을 때 내용을 다이어로그로 보여주는 함수
 void Message::onClickListItem(const QModelIndex &index)
 {
 	QSqlQuery *query1 = FiveOfRulerDB::select("message", "index", index.data().toString());
@@ -70,13 +71,13 @@ void Message::onClickListItem(const QModelIndex &index)
 		+ "\n\n" + "Receiver : " + query1->value(2).toString());
 }
 
-// 새로고침하는 함수
+// 용도 : 새로고침하는 함수
 void Message::newWindow()
 {
 	this->showData();
 }
 
-// 역순으로 데이터를 출력하는 함수
+// 용도 : 역순으로 데이터를 출력하는 함수
 void Message::showData()
 {
 	model = new QStringListModel(this);

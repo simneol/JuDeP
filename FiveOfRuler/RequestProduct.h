@@ -9,7 +9,8 @@
 #include "User.h"
 #include "ui_RequestProduct.h"
 
-// 사용자의 제품이 수리가 필요할 경우 사용하는 클래스이다.
+// 문주원 2014112022
+// 용도 : 사용자의 제품이 수리가 필요할 경우 사용하는 클래스이다.
 class RequestProduct : public QDialog
 {
 	Q_OBJECT

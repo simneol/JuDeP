@@ -13,6 +13,7 @@
 #include "User.h"
 #include "ui_MessageDialog.h"
 
+// 문주원 2014112022
 // 메시지를 사용자와 테크니션간에 서로 교환하는 클래스이다.
 class Message : public QDialog
 {

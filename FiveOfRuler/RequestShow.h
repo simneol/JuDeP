@@ -14,7 +14,8 @@
 #include "User.h"
 #include "ui_RequestShow.h"
 
-// 수리를 등록한 제품에 관해 사용자가 그 정보를 볼 수 있는 클래스이다.
+// 문주원 2014112022
+// 용도 : 수리를 등록한 제품에 관해 사용자가 그 정보를 볼 수 있는 클래스이다.
 class RequestShow : public QDialog
 {
 	Q_OBJECT
