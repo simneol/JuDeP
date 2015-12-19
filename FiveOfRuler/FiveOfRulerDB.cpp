@@ -1,9 +1,11 @@
 ﻿#include "FiveOfRulerDB.h"
 #include "DatabaseInfo.h"
 
+/* Static 변수 선언 */
 QSqlDatabase FiveOfRulerDB::db;
 QSqlQuery *FiveOfRulerDB::query;
 
+// DB 정보 설정
 FiveOfRulerDB::FiveOfRulerDB()
 {
 	db=QSqlDatabase::addDatabase("QMYSQL");
@@ -16,6 +18,7 @@ FiveOfRulerDB::FiveOfRulerDB()
 
 FiveOfRulerDB::~FiveOfRulerDB(){qDebug("~FiveOfRulerDB");}
 
+// DB연결. 성공 시 true 반환
 bool FiveOfRulerDB::open()
 {
 	qDebug("Try DB Open");
@@ -26,9 +29,10 @@ bool FiveOfRulerDB::open()
 	return true;
 }
 
+// 받은 문자열에 대해 유효성 검사 (SQL Injection 대비)
 bool FiveOfRulerDB::checkValid(QString str)
 {
-	/* SQL Injection ¿¹¹æÀ» À§ÇØ, id À¯È¿¼º °Ë»ç */
+	/* SQL Query문에 주로 사용되는 문자열을 포함할 수 없도록 함 */
 	if(str.contains("'")||str.contains("--")||str.contains("/")||str.contains(";")||str.contains("*"))
 	{
 		qDebug("String includes something wrong character!");
@@ -37,6 +41,7 @@ bool FiveOfRulerDB::checkValid(QString str)
 	return true;
 }
 
+// SQL의 select문을 대신하여 결과 Query를 반환해주는 함수
 QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 {
 	qDebug().noquote()<<"SELECT * from "+table+"_table where "+column+"=\'"+record+"\'";
@@ -50,6 +55,8 @@ QSqlQuery* FiveOfRulerDB::select(QString table,QString column,QString record)
 	return query;
 }
 
+// SQL의 insert문을 대신하여 결과 Query를 반환해주는 함수
+// 삽입할 데이터는 column과 record를 pair한 변수들의 vector로 받는다.
 QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > data)
 {
 	QString totalStmt="INSERT INTO "+table+"_table (";
@@ -59,7 +66,8 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > 
 		if(i<data.length()-1)
 			totalStmt+=", ";
 	}
-	totalStmt+=") VALUES (\'";
+	totalStmt+=") VALUES (\'";	
+	// INSERT INTO TABLE_table ( COLUMN1, COLUMN2, COLUMN3 ) VALUES ('
 	for(int i=0;i<data.length();i++)
 	{
 		totalStmt+=data[i].second;
@@ -67,6 +75,7 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > 
 			totalStmt+="\', \'";
 	}
 	totalStmt+="\')";
+	// INSERT INTO TABLE_table ( COLUMN1, COLUMN2, COLUMN3 ) VALUES ('RECORD1', 'RECORD2', 'RECORD3')
 	qDebug().noquote()<<totalStmt;
 	query->prepare(totalStmt);
 	if(!query->exec())
@@ -78,6 +87,9 @@ QSqlQuery* FiveOfRulerDB::insert(QString table,QVector<QPair<QString,QString> > 
 	return query;
 }
 
+// SQL의 update문을 대신하여 결과 Query를 반환해주는 함수
+// 갱신할 데이터는 column과 record를 pair한 변수들의 vector로 받는다.
+// 이 때, 첫번째 pair는 갱신할 레코드에 대한 검색 정보이다(column, record)
 QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QPair<QString,QString> >data)
 {
 	for(int i=0;i<data.size();i++)
@@ -92,10 +104,12 @@ QSqlQuery* FiveOfRulerDB::update(QString table,QVector<QPair<QString,QString> >d
 		if(i<data.length()-1)
 			totalStmt+=", ";
 	}
+	// UPDATE TABLE_table SET COLUMN1 = 'RECORD1', COLUMN2 = 'RECORD2'
 	totalStmt+=" WHERE ";
 	totalStmt+=data[0].first;
 	totalStmt+=" = ";
-	totalStmt+="\'"+data[1].second+"\'";
+	totalStmt+="\'"+data[0].second+"\'";
+	// UPDATE TABLE_table SET COLUMN2 = 'RECORD2', COLUMN3 = 'RECORD3' WHERE COLUMN1 = 'RECORD1'
 	qDebug().noquote()<<totalStmt;
 	query->prepare(totalStmt);
 	if(!query->exec())

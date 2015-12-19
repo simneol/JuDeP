@@ -1,6 +1,6 @@
 #ifndef FORGOTIDPWDIALOG_H
 #define FORGOTIDPWDIALOG_H
-
+/* 아이디 및 비밀번호 찾기 창 */
 #include <QtWidgets/QDialog>
 
 #include "ui_ForgotIdPwDialog.h"

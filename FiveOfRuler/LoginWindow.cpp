@@ -16,7 +16,10 @@ LoginWindow::LoginWindow(QWidget *parent)
 	// Qt Desinger로 구성한 Ui들을 구성하는 함수
 	ui.setupUi(this);
 
-	connect(ui.btn_Login,SIGNAL(clicked()),this,SLOT(slotLogin()));	// 로그인 버튼 누르면, login() 실행
+	/* 각 ui요소들을 SLOT함수들과 연결 */
+	connect(ui.btn_Login,SIGNAL(clicked()),this,SLOT(slotLogin()));
+
+	/* 리턴(엔터)키 누를 시 로그인 */ 
 	connect(ui.lineEdit_Pw,SIGNAL(returnPressed()),this,SLOT(slotLogin()));
 	connect(ui.lineEdit_Id,SIGNAL(returnPressed()),this,SLOT(slotLogin()));
 
@@ -32,13 +35,16 @@ void LoginWindow::slotLogin(void)
 {
 	QSqlQuery *query;
 	bool isUser=true;
+	// user table에서 우선 id로 조사
 	query=FiveOfRulerDB::select("user","id", ui.lineEdit_Id->text());
+	// 쿼리가 유효하지 않을경우, technician table에서 조사
 	if(!query->isValid())
 	{
 		query=FiveOfRulerDB::select("technician","id",ui.lineEdit_Id->text());
 		isUser=false;
 	}
 
+	// 비밀번호가 일치해야하며, 유저가 쓴 비밀번호의 길이가 1 이상이어야 통과
 	if(query != NULL 
 		&& query->value(1).toString() == ui.lineEdit_Pw->text()
 		&& ui.lineEdit_Pw->text().length() > 0)
@@ -46,6 +52,7 @@ void LoginWindow::slotLogin(void)
 		qDebug("password correct");
 		if(isUser)
 		{
+			// 접속한 사용자의 정보(id)를 새로 열릴 창에 전달
 			User *user=new User();
 			user->setId(ui.lineEdit_Id->text());
 			InstanceOfUserManager.setInfo(user);
@@ -82,6 +89,7 @@ void LoginWindow::slotOpenForgotIdPwDialog(void)
 	OpenDialog("ForgotIdPwDialog");
 }
 
+/* 인자값에 따라 알맞은 창 열기, 한 번에 1개의 창만 열리도록 */
 #pragma region DialogControl
 
 void LoginWindow::OpenDialog(QString str)
