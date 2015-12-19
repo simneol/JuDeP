@@ -1,3 +1,8 @@
+/***************************************
+/ 작성자 : 박성수
+/ 클래스 : RegisterProductDialog
+/ 용  도 : 프로덕트를 등록하는 다이어로그
+/***************************************/
 #ifndef	RegisterProductDialog_H
 #define RegisterProductDialog_H
 

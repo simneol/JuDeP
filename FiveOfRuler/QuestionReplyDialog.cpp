@@ -1,3 +1,8 @@
+/***************************************
+/ 작성자 : 박성수
+/ 클래스 : QuestionReplyDialog
+/ 용  도 : 질문에 대해 답하는 다이어로그
+/***************************************/
 #include "QuestionReplyDialog.h"
 #include "FiveOfRulerDB.h"
 

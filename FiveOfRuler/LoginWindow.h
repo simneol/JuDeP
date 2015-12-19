@@ -1,6 +1,6 @@
 ﻿#ifndef LOGINWINDOW_H
 #define LOGINWINDOW_H
-
+/* 로그인을 수행하는 창에 대한 전반적인 관리를 하는 부분 (Controller) */
 #include <QTCore/QMap>
 #include <QtWidgets/QMainWindow>
 

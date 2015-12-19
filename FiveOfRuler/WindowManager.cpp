@@ -7,11 +7,12 @@ TechnicianWindow *WindowManager::technicianWindow;
 WindowManager::WindowManager(){qDebug("WindowManager()");}
 
 WindowManager::~WindowManager(){qDebug("~WindowManager()");}
-
+// 인자 값에 따라, 창을 여는 함수
 void WindowManager::slotOpenWindow(QString windowName,Info* info)
 {
 	if(windowName.compare("LoginWindow")==0)
 	{
+		// 창 객체가 여러개 생성되지 않도록 방지
 		if(loginWindow==NULL)
 			loginWindow=new LoginWindow();
 		loginWindow->show();
@@ -30,6 +31,7 @@ void WindowManager::slotOpenWindow(QString windowName,Info* info)
 	}
 }
 
+// 창 객체를 반환하는 함수
 QMainWindow* WindowManager::getWindow(QString windowName)
 {
 	if(windowName.compare("LoginWindow")==0)
@@ -46,6 +48,7 @@ QMainWindow* WindowManager::getWindow(QString windowName)
 	}
 }
 
+// 창 객체를 닫는 함수
 void WindowManager::slotCloseWindow(QString windowName)
 {
 	if(windowName.compare("LoginWindow")==0)

@@ -1,3 +1,8 @@
+/***************************************
+/ 작성자 : 박성수
+/ 클래스 : TechQNASelectDialog
+/ 용  도 : 일반 사용자의 질문에 대해 답변 할 수 있는 Window
+/***************************************/
 #include "TechQNASelectDialog.h"
 #include "FiveOfRulerDB.h"
 #include "TechnicianWindow.h"
