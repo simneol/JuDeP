@@ -3,6 +3,7 @@
 #include "FiveOfRulerDB.h"
 #include "QuestionReplyDialog.h"
 #include "UserInstanceManager.h"
+#include "TechUser.h"
 
 #include <QtSql/QSqlQuery>
 #include <QtWidgets/QMessageBox>
@@ -27,18 +28,25 @@ void LoginManager::slotLogin(QString id, QString pw, bool isUser)
 		&& query->value(1).toString() == pw
 		&& pw.length() > 0)
 	{
+		Info* info;
 		qDebug("password correct");
 		if(isUser)
 		{
-			User *user=new User();
+			info = new User();
+			User* user = (User *)info;
 			user->setId(id);
-			InstanceOfUserManager.setInfo(user);
+			InstanceOfUserManager.setInfo(info);
 
-			WindowManager::slotOpenWindow("UserWindow",(Info*)user);
+			WindowManager::slotOpenWindow("UserWindow",info);
 		}
 		// Technician User
 		else if(isUser == false)
 		{
+			info = new TechUser();
+			TechUser* user = (TechUser *)info;
+			user->setId(id);
+			user->setType(query->value(8).toBool());
+			InstanceOfUserManager.setInfo(info);
 
 			WindowManager::slotOpenWindow("TechnicianWindow");
 		}
