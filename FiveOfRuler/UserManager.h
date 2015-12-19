@@ -7,6 +7,7 @@
 #include "QNASeeDialog.h"
 #include "QlistWindow.h"
 #include "RequestProduct.h"
+#include "RegisterProductInformation.h"
 #include "RequestShow.h"
 #include "User.h"
 
@@ -22,6 +23,7 @@ private:
 	QNAWriteDialog *qnaWriteDialog;
 	QlistWindow *qnaSeeDialog;
 	User *user;
+	RegisterProductInformation * registerProduc;
 
 	RequestProduct *requestDialog;
 	RequestShow *reauestShowDialog;
@@ -32,5 +34,6 @@ private:
 		void openQNASeeDialog();
 		void openRequestDialog();
 		void openRequestShowDialog();
+		void openRegisterProductInformation();
 };
 #endif
