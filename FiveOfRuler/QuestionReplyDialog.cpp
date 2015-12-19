@@ -3,7 +3,7 @@
 
 #include <QtCore/QDebug>
 #include <QtCore/QVector>
-
+#include <QString>
 #include <QtWidgets/QMessageBox>
 
 QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
@@ -24,9 +24,21 @@ QuestionReplyDialog::QuestionReplyDialog(QWidget *parent)
 		SLOT(slotCancle()));
 }
 
+
 QuestionReplyDialog::~QuestionReplyDialog()
 {
 	qDebug("~QuestionReplyDialog()");
+}
+
+void QuestionReplyDialog::setup(int val)
+{
+	
+	QString index;
+	index = val;
+	QSqlQuery *query = FiveOfRulerDB::select("qna", "postIndex", index);
+	ui.textEdit_Question->toPlainText() = query->value(3).toString();
+	ui.label_QuestionerID->text() = query->value(1).toString();
+
 }
 
 void QuestionReplyDialog::slotSubmit()

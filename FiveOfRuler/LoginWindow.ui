@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>394</width>
-    <height>252</height>
+    <height>229</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,27 +33,6 @@
      </rect>
     </property>
     <layout class="QVBoxLayout" name="mainLayout">
-     <item>
-      <layout class="QHBoxLayout" name="topLayout">
-       <item>
-        <widget class="QRadioButton" name="radio_User">
-         <property name="text">
-          <string>User</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radio_Technician">
-         <property name="text">
-          <string>Technician</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item>
       <layout class="QGridLayout" name="midLayout">
        <item row="1" column="2">
@@ -137,7 +116,7 @@
      <x>0</x>
      <y>0</y>
      <width>394</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Menu">
@@ -160,8 +139,6 @@
   <tabstop>lineEdit_Pw</tabstop>
   <tabstop>btn_Login</tabstop>
   <tabstop>btn_Register</tabstop>
-  <tabstop>radio_User</tabstop>
-  <tabstop>radio_Technician</tabstop>
   <tabstop>btn_ForgotIdPw</tabstop>
  </tabstops>
  <resources/>

@@ -43,10 +43,4 @@ void UserManager::openRequestShowDialog()
 	reauestShowDialog->show();
 }
 
-void UserManager::openRegisterProductInformation()
-{
-	registerProduc = new RegisterProductInformation(0, user);
-	registerProduc->show();
-}
-
 UserWindow::~UserWindow(){ qDebug("~UserWindow()"); }

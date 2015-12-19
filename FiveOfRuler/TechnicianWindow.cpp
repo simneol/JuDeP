@@ -32,13 +32,14 @@ void TechnicianWindow::slotOpenQuestionReplyWindow()
 {
 	QDialog *target = OpenDialog("TechQNASelectDialog");
 	TechQNASelectDialog *target2 = (TechQNASelectDialog *)target;
-	target2->setDialog(this);
 }
 
 void TechnicianWindow::OpenQuestionReplyDialog(int val)
 {
 	CloseAllDialog();
-	OpenDialog("QuestionReply");
+	QuestionReplyDialog *target = (QuestionReplyDialog *)OpenDialog("QuestionReplyDialog");
+	target->setup(val);
+
 }
 #pragma region DialogControll
 
@@ -58,15 +59,13 @@ QDialog* TechnicianWindow::OpenDialog(QString str)
 			target = new TechQNASelectDialog();
 		}
 		dialogs.insert(str, target);
-		target->show();
-		target->hasFocus();
 	}
 	else
 	{
 		qDebug("Open-AlreadyHave");
-		target->show();
-		target->hasFocus();
 	}
+	target->show();
+	target->hasFocus();
 
 	return target;
 	// this->hide();

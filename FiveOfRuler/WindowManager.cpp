@@ -30,6 +30,22 @@ void WindowManager::slotOpenWindow(QString windowName,Info* info)
 	}
 }
 
+QMainWindow* WindowManager::getWindow(QString windowName)
+{
+	if(windowName.compare("LoginWindow")==0)
+	{
+		return loginWindow;
+	}
+	else if(windowName.compare("UserWindow")==0)
+	{
+		return userWindow;
+	}
+	else if(windowName.compare("TechnicianWindow")==0)
+	{
+		return technicianWindow;
+	}
+}
+
 void WindowManager::slotCloseWindow(QString windowName)
 {
 	if(windowName.compare("LoginWindow")==0)
